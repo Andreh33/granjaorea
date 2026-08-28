@@ -23,6 +23,26 @@ describe("Testimonials", () => {
     expect(screen.getByText(/la comida es casera/i)).toBeVisible();
   });
 
+  it("keeps every approved testimonial context exact", () => {
+    render(<Testimonials />);
+
+    expect(
+      screen.getByText(
+        "Madre de una participante de 10 años · testimonio compartido con Orea",
+      ),
+    ).toBeVisible();
+    expect(
+      screen.getByText(
+        "Padre de un participante de 14 años · testimonio compartido con Orea",
+      ),
+    ).toBeVisible();
+    expect(
+      screen.getByText(
+        "Madre de dos participantes · testimonio compartido con Orea",
+      ),
+    ).toBeVisible();
+  });
+
   it("keeps quotations semantic and removes decorative indexes", () => {
     render(<Testimonials />);
 

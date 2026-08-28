@@ -327,14 +327,16 @@ export const siteContent = {
       quote:
         "Mi hija salía de casa tantos días por primera vez y volvió encantada. Destaco la profesionalidad de los monitores y la tranquilidad de saber que había atención médica a diez minutos. Repetimos seguro.",
       name: "María J.",
-      context: "Madre de una participante · testimonio compartido con Orea",
+      context:
+        "Madre de una participante de 10 años · testimonio compartido con Orea",
     },
     {
       id: "carlos",
       quote:
         "Los niños no paran en todo el día y la política de no usar el móvil les viene genial para desconectar de verdad. Una experiencia de diez.",
       name: "Carlos R.",
-      context: "Padre de un participante · testimonio compartido con Orea",
+      context:
+        "Padre de un participante de 14 años · testimonio compartido con Orea",
     },
     {
       id: "elena",
