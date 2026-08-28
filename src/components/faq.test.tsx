@@ -12,5 +12,6 @@ it("uses a native disclosure that works without JavaScript", () => {
   expect(disclosure).not.toHaveAttribute("open");
   fireEvent.click(question!);
   expect(disclosure).toHaveAttribute("open");
-  expect(screen.getByText(/sábados y domingos por la mañana/i)).toBeInTheDocument();
+  expect(screen.getByText(/visitas familiares se organizan con cita previa/i)).toBeInTheDocument();
+  expect(screen.queryByText(/sábados y domingos por la mañana/i)).not.toBeInTheDocument();
 });
