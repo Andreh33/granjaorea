@@ -7,7 +7,7 @@ const expectedNavigation = [
   ["Granja", "#granja"],
   ["Hípica", "#hipica"],
   ["Campamentos", "#campamentos"],
-  ["Visitas", "#experiencias"],
+  ["Visitas", "#visitas"],
   ["Contacto", "#contacto"],
 ] as const;
 

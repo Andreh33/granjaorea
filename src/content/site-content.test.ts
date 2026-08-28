@@ -33,7 +33,7 @@ describe("siteContent", () => {
       { label: "Granja", href: "#granja" },
       { label: "Hípica", href: "#hipica" },
       { label: "Campamentos", href: "#campamentos" },
-      { label: "Visitas", href: "#experiencias" },
+      { label: "Visitas", href: "#visitas" },
       { label: "Contacto", href: "#contacto" },
     ]);
   });
