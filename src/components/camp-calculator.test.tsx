@@ -44,5 +44,20 @@ describe("CampCalculator", () => {
     expect(decodeURIComponent(String(url))).toContain("690 €");
     expect(target).toBe("_blank");
     expect(features).toContain("noopener");
+    open.mockRestore();
+  });
+
+  it("keeps invalid contact details out of WhatsApp", async () => {
+    const user = userEvent.setup();
+    const open = vi.spyOn(window, "open").mockImplementation(() => null);
+    render(<CampCalculator />);
+
+    await user.type(screen.getByLabelText(/nombre del responsable/i), "   ");
+    await user.type(screen.getByLabelText(/^teléfono/i), "-------");
+    await user.type(screen.getByLabelText(/edad del niño/i), "9");
+    await user.click(screen.getByRole("button", { name: /continuar por whatsapp/i }));
+
+    expect(open).not.toHaveBeenCalled();
+    open.mockRestore();
   });
 });

@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { campSeason } from "@/content/camp-config";
+
 import styles from "./site-header.module.css";
 
 interface NavigationLink {
@@ -106,7 +108,7 @@ export function HeaderMobileMenu({ links }: HeaderMobileMenuProps) {
               href="#temporada"
               onClick={closeAndRestoreFocus}
             >
-              Turnos y precios 2027
+              Turnos y precios {campSeason.year}
               <span aria-hidden="true">↘</span>
             </a>
           </nav>

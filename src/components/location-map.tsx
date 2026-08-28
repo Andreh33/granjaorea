@@ -52,7 +52,7 @@ export function LocationMap() {
             <iframe
               allowFullScreen
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
+              referrerPolicy="no-referrer"
               src={mapEmbedUrl}
               title="Mapa interactivo de Granja Escuela Orea en Ciudad Real"
             />

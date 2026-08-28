@@ -1,28 +1,63 @@
 "use client";
 
-import { type FormEvent, useState } from "react";
+import { useRef, useState } from "react";
 
 import { campSeason } from "@/content/camp-config";
 import {
   buildCampEstimate,
   type CampSessionId,
 } from "@/lib/camp-estimate";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 import styles from "./camp-calculator.module.css";
+
+const noScriptWhatsAppUrl = buildWhatsAppUrl(
+  `Hola, quiero consultar los turnos de Orea Camp ${campSeason.year}.`,
+);
 
 export function CampCalculator() {
   const sessions = campSeason.sessions;
   const [sessionId, setSessionId] = useState<CampSessionId>(sessions[0].id);
+  const detailsRef = useRef<HTMLDivElement>(null);
   const selectedSession =
     sessions.find((session) => session.id === sessionId) ?? sessions[0];
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+  function handleContinue() {
+    const details = detailsRef.current;
+    const responsibleName = details?.querySelector<HTMLInputElement>(
+      '[name="responsibleName"]',
+    );
+    const phone = details?.querySelector<HTMLInputElement>('[name="phone"]');
+    const childAge = details?.querySelector<HTMLInputElement>(
+      '[name="childAge"]',
+    );
+
+    if (!responsibleName || !phone || !childAge) {
+      return;
+    }
+
+    responsibleName.setCustomValidity(
+      responsibleName.value.trim() ? "" : "Escribe el nombre del responsable.",
+    );
+    const phoneDigits = phone.value.replace(/\D/g, "");
+    phone.setCustomValidity(
+      phoneDigits.length >= 7 && phoneDigits.length <= 15
+        ? ""
+        : "Escribe un teléfono válido con entre 7 y 15 cifras.",
+    );
+
+    const firstInvalid = [responsibleName, phone, childAge].find(
+      (control) => !control.checkValidity(),
+    );
+    if (firstInvalid) {
+      firstInvalid.reportValidity();
+      return;
+    }
+
     const estimate = buildCampEstimate({
-      responsibleName: String(formData.get("responsibleName") ?? ""),
-      phone: String(formData.get("phone") ?? ""),
-      childAge: Number(formData.get("childAge")),
+      responsibleName: responsibleName.value,
+      phone: phone.value,
+      childAge: Number(childAge.value),
       sessionId,
     });
 
@@ -50,7 +85,7 @@ export function CampCalculator() {
           </div>
         </header>
 
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <div className={styles.form} ref={detailsRef}>
           <fieldset className={styles.sessionFieldset}>
             <legend>1. Elige el turno</legend>
             <div className={styles.sessionGrid}>
@@ -138,18 +173,28 @@ export function CampCalculator() {
           </aside>
 
           <div className={styles.submitRow}>
-            <button type="submit">
+            <button onClick={handleContinue} type="button">
               <WhatsAppMark />
               Continuar por WhatsApp
               <span aria-hidden="true">↗</span>
             </button>
+            <noscript>
+              <a
+                className={styles.noScriptLink}
+                href={noScriptWhatsAppUrl}
+                rel="noreferrer"
+                target="_blank"
+              >
+                Escribir por WhatsApp sin calculadora
+              </a>
+            </noscript>
             <p>
               No guardamos estos datos. WhatsApp se abrirá con el mensaje
               preparado; la disponibilidad la confirma personalmente el equipo
               Orea.
             </p>
           </div>
-        </form>
+        </div>
       </div>
     </section>
   );

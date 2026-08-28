@@ -22,15 +22,13 @@ test("page keeps its content contract and never overflows horizontally", async (
 
 test("FAQ works from the keyboard and exposes its answer", async ({ page }) => {
   await page.goto("/#preguntas");
-  const question = page.getByRole("button", { name: /echa de menos/i });
+  const question = page.locator("summary", { hasText: /echa de menos/i });
 
   await question.focus();
   await page.keyboard.press("Enter");
 
-  await expect(question).toHaveAttribute("aria-expanded", "true");
-  await expect(
-    page.getByRole("region", { name: /echa de menos/i }),
-  ).toContainText(/equipo acompa/i);
+  await expect(question.locator("..")).toHaveAttribute("open", "");
+  await expect(page.getByText(/equipo acompaña de cerca/i)).toBeVisible();
 });
 
 test("mobile menu has a complete keyboard close flow", async ({ page }) => {
@@ -222,9 +220,19 @@ test("the rendered page has no broken images, page errors, or serious axe violat
   page,
 }) => {
   const pageErrors: string[] = [];
+  const consoleErrors: string[] = [];
   const failedResponses: string[] = [];
+  const failedRequests: string[] = [];
 
   page.on("pageerror", (error) => pageErrors.push(error.message));
+  page.on("console", (message) => {
+    if (message.type() === "error") {
+      consoleErrors.push(message.text());
+    }
+  });
+  page.on("requestfailed", (request) => {
+    failedRequests.push(`${request.failure()?.errorText ?? "failed"} ${request.url()}`);
+  });
   page.on("response", (response) => {
     if (response.status() >= 400) {
       failedResponses.push(`${response.status()} ${response.url()}`);
@@ -259,7 +267,9 @@ test("the rendered page has no broken images, page errors, or serious axe violat
 
   expect(brokenImages).toEqual([]);
   expect(pageErrors).toEqual([]);
+  expect(consoleErrors).toEqual([]);
   expect(failedResponses).toEqual([]);
+  expect(failedRequests).toEqual([]);
   expect(seriousViolations).toEqual([]);
 });
 
@@ -274,8 +284,22 @@ test.describe("without JavaScript", () => {
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     await expect(page.locator('time[datetime="08:30"]')).toBeVisible();
     await expect(page.getByText(/equipo titulado y presente/i)).toBeVisible();
+    await page.locator("summary", { hasText: /para qué edades/i }).click();
+    await expect(page.getByText(/campamento está dirigido a niños y jóvenes/i)).toBeVisible();
     await expect(
       page.getByRole("link", { name: /whatsapp/i }).first(),
     ).toBeVisible();
+  });
+
+  test("never submits calculator details into the page URL", async ({ page }) => {
+    await page.goto("/#temporada");
+
+    await page.getByLabel(/nombre del responsable/i).fill("Dato privado");
+    await page.getByLabel(/^teléfono/i).fill("612345678");
+    await page.getByLabel(/edad del niño/i).fill("9");
+    await page.getByRole("button", { name: /continuar por whatsapp/i }).click();
+
+    expect(new URL(page.url()).search).toBe("");
+    expect(page.url()).not.toContain("Dato");
   });
 });

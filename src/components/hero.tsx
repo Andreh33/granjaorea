@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { campSeason } from "@/content/camp-config";
 import { siteContent } from "@/content/site-content";
 
 import { HeroEntrance } from "./hero-entrance";
@@ -47,7 +48,7 @@ export function Hero() {
             </div>
             <p className={styles.status}>
               <span aria-hidden="true" className={styles.statusDot} />
-              Turnos y precios 2027 confirmados
+              {campSeason.message}
             </p>
           </HeroEntrance>
         </div>

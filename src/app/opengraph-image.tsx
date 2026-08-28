@@ -1,5 +1,7 @@
 import { ImageResponse } from "next/og";
 
+import { campSeason } from "@/content/camp-config";
+
 export const runtime = "nodejs";
 export const alt = "Orea Camp, campamento de verano en Ciudad Real";
 export const size = { width: 1200, height: 630 };
@@ -52,7 +54,7 @@ export default function OpenGraphImage() {
               width: 20,
             }}
           />
-          Orea Camp · Temporada 2027
+          Orea Camp · Temporada {campSeason.year}
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <div

@@ -9,6 +9,7 @@ export interface SeasonSession {
 
 export interface CampSeason {
   readonly year: number;
+  readonly overallDateRange: string;
   readonly status: SeasonStatus;
   readonly eyebrow: string;
   readonly message: string;
@@ -16,11 +17,14 @@ export interface CampSeason {
   readonly sessions: readonly SeasonSession[];
 }
 
+const campaignYear = 2027;
+
 export const campSeason = {
-  year: 2027,
+  year: campaignYear,
+  overallDateRange: "1 al 30 de julio",
   status: "prelaunch",
-  eyebrow: "Campamento de verano 2027",
-  message: "Turnos y precios 2027 confirmados",
+  eyebrow: `Campamento de verano ${campaignYear}`,
+  message: `Turnos y precios ${campaignYear} confirmados`,
   description:
     "Calcula el precio base y consulta la disponibilidad con el equipo Orea. La conversación por WhatsApp no formaliza una reserva.",
   sessions: [

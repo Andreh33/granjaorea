@@ -353,14 +353,14 @@ export const siteContent = {
     {
       id: "carlos",
       quote:
-        "El servicio de transporte desde Madrid es comodísimo. Los niños no paran en todo el día y la política de no usar el móvil les viene genial para desconectar de verdad. Una experiencia de diez.",
+        "Los niños no paran en todo el día y la política de no usar el móvil les viene genial para desconectar de verdad. Una experiencia de diez.",
       name: "Carlos R.",
       context: "Padre de un participante de 14 años · testimonio compartido con Orea",
     },
     {
       id: "elena",
       quote:
-        "Llevamos confiando en Orea Camp tres años seguidos. El bono de hípica es una maravilla y la comida es casera. Se nota la experiencia de tantos años organizando esto.",
+        "Llevamos confiando en Orea Camp tres años seguidos. La comida es casera y se nota la experiencia de tantos años organizando esto.",
       name: "Elena F.",
       context: "Madre de dos participantes · testimonio compartido con Orea",
     },
@@ -381,8 +381,7 @@ export const siteContent = {
     {
       id: "transport",
       question: "¿Hay transporte desde Madrid?",
-      answer:
-        "Orea ofrece transporte acompañado desde Madrid como servicio adicional. Los horarios, el punto de salida y las condiciones de la temporada 2027 se confirmarán junto con las fechas.",
+      answer: `El transporte desde Madrid no está confirmado para la temporada ${campSeason.year}. Consulta al equipo Orea antes de organizar el viaje; si se activa, te facilitarán los horarios, el punto de salida y las condiciones.`,
     },
     {
       id: "phones",
@@ -410,9 +409,8 @@ export const siteContent = {
     },
     {
       id: "dates-prices",
-      question: "¿Cuáles son los turnos y precios de 2027?",
-      answer:
-        "La primera quincena, del 1 al 15 de julio, tiene un precio base de 690 € por participante. La segunda, del 16 al 30 de julio, cuesta 630 €. Puedes preparar tu consulta con la calculadora y el equipo confirmará por WhatsApp la disponibilidad y las condiciones.",
+      question: `¿Cuáles son los turnos y precios de ${campSeason.year}?`,
+      answer: `${campSeason.sessions[0].label}, del ${campSeason.sessions[0].dateRange}: ${campSeason.sessions[0].priceEur} € por participante. ${campSeason.sessions[1].label}, del ${campSeason.sessions[1].dateRange}: ${campSeason.sessions[1].priceEur} €. Puedes preparar tu consulta con la calculadora y el equipo confirmará por WhatsApp la disponibilidad y las condiciones.`,
     },
   ],
 } as const satisfies SiteContent;

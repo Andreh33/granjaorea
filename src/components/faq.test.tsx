@@ -3,14 +3,14 @@ import { expect, it } from "vitest";
 
 import { Faq } from "./faq";
 
-it("toggles an answer with truthful ARIA state", () => {
+it("uses a native disclosure that works without JavaScript", () => {
   render(<Faq />);
 
-  const button = screen.getByRole("button", { name: /echa de menos/i });
-  expect(button).toHaveAttribute("aria-expanded", "false");
-  fireEvent.click(button);
-  expect(button).toHaveAttribute("aria-expanded", "true");
-  expect(
-    screen.getByRole("region", { name: /echa de menos/i }),
-  ).toBeVisible();
+  const question = screen.getByText(/echa de menos/i).closest("summary");
+  const disclosure = question?.closest("details");
+  expect(question).not.toBeNull();
+  expect(disclosure).not.toHaveAttribute("open");
+  fireEvent.click(question!);
+  expect(disclosure).toHaveAttribute("open");
+  expect(screen.getByText(/equipo acompaña de cerca/i)).toBeInTheDocument();
 });

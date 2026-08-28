@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { campSeason } from "@/content/camp-config";
 import { siteContent } from "@/content/site-content";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
@@ -7,7 +8,7 @@ import { MobileStickyCta } from "./mobile-sticky-cta";
 import styles from "./conversion-cta.module.css";
 
 const closingWhatsAppUrl = buildWhatsAppUrl(
-  "Hola, quiero hablar con el equipo sobre Orea Camp 2027.",
+  `Hola, quiero hablar con el equipo sobre Orea Camp ${campSeason.year}.`,
 );
 
 export function ConversionCta() {

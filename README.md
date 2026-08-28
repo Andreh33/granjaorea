@@ -1,6 +1,6 @@
 # Orea Camp 2027
 
-Rediseño completo de la web de campamentos de Orea. Está construido con Next.js 16, React 19 y TypeScript, genera una página estática optimizada y está preparado para publicarse en Vercel cuando se conecten las cuentas de GitHub y Vercel.
+Rediseño completo de la web de campamentos de Orea. Está construido con Next.js 16, React 19 y TypeScript, genera una página estática optimizada y está publicado en Vercel desde el repositorio de GitHub.
 
 La campaña utiliza únicamente información comprobable. Los turnos y precios facilitados por Orea para 2027 son del 1 al 15 de julio por 690 € y del 16 al 30 de julio por 630 €, ambos por participante. La web no afirma que queden plazas: la disponibilidad y las condiciones se confirman personalmente por WhatsApp.
 
@@ -33,10 +33,10 @@ npx playwright install chromium
 
 ## Dónde se actualiza la temporada
 
-El contenido comercial y editorial vive en `src/content/site-content.ts`. Antes de editar la interfaz, actualiza ahí:
+Los datos confirmados de campaña viven en `src/content/camp-config.ts`; el resto del contenido editorial está en `src/content/site-content.ts`. Antes de editar la interfaz, actualiza:
 
-- `season.year`, `season.status`, mensaje y descripción;
-- `season.sessions` contiene los turnos y precios confirmados; la disponibilidad se consulta por separado;
+- `campSeason.year`, estado, mensaje y descripción en `camp-config.ts`;
+- `campSeason.sessions`, que contiene los turnos y precios confirmados; la disponibilidad se consulta por separado;
 - teléfono, email, dirección y redes en `organization`;
 - horario, actividades, cuidados, testimonios y FAQ.
 

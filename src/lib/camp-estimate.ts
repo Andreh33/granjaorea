@@ -31,7 +31,7 @@ export function buildCampEstimate(input: CampEstimateInput): CampEstimate {
   }
 
   const message = [
-    "Hola, quiero consultar Orea Camp 2027.",
+    `Hola, quiero consultar Orea Camp ${campSeason.year}.`,
     "",
     `Responsable: ${input.responsibleName.trim()}`,
     `Teléfono: ${input.phone.trim()}`,

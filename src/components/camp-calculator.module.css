@@ -406,6 +406,12 @@
   text-transform: uppercase;
 }
 
+.noScriptLink {
+  color: var(--color-forest);
+  font-size: 0.78rem;
+  font-weight: 720;
+}
+
 @media (max-width: 760px) {
   .intro {
     align-items: start;
