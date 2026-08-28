@@ -1,0 +1,233 @@
+.trust {
+  background: var(--color-sky);
+  border-bottom: 1px solid rgb(16 44 39 / 0.11);
+  color: var(--color-forest);
+  padding: 0 var(--page-gutter);
+}
+
+.trustList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  list-style: none;
+  margin: 0 auto;
+  max-width: var(--content-max);
+  padding: 0;
+}
+
+.trustItem {
+  display: grid;
+  gap: 0.2rem;
+  min-height: 9.25rem;
+  padding: 1.65rem clamp(1rem, 2.2vw, 2rem);
+  position: relative;
+}
+
+.trustItem + .trustItem {
+  border-left: 1px solid rgb(16 44 39 / 0.13);
+}
+
+.trustIndex {
+  color: rgb(16 44 39 / 0.43);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  margin-bottom: auto;
+}
+
+.trustItem strong {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.35rem, 2.4vw, 2.15rem);
+  font-weight: 680;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.trustItem > span:last-child {
+  color: rgb(16 44 39 / 0.7);
+  font-size: 0.73rem;
+  line-height: 1.4;
+}
+
+.season {
+  background: var(--color-sand);
+  color: var(--color-ink);
+  padding: clamp(5.5rem, 10vw, 10rem) var(--page-gutter);
+}
+
+.seasonGrid {
+  align-items: center;
+  border-bottom: 1px solid rgb(22 32 30 / 0.2);
+  border-top: 1px solid rgb(22 32 30 / 0.2);
+  display: grid;
+  gap: clamp(2rem, 5vw, 5rem);
+  grid-template-columns: 0.55fr 1.3fr 0.85fr;
+  margin: 0 auto;
+  max-width: var(--content-max);
+  min-height: 27rem;
+  padding: clamp(2.5rem, 5vw, 4.5rem) 0;
+}
+
+.seasonStamp {
+  align-items: flex-start;
+  color: var(--color-forest);
+  display: flex;
+  font-family: var(--font-display), sans-serif;
+  line-height: 0.72;
+}
+
+.seasonStamp span {
+  font-size: clamp(1.4rem, 2.7vw, 2.8rem);
+  font-weight: 570;
+  writing-mode: vertical-rl;
+}
+
+.seasonStamp strong {
+  color: var(--color-orange);
+  font-size: clamp(6rem, 11vw, 10.5rem);
+  font-variation-settings: "wdth" 85;
+  font-weight: 730;
+  letter-spacing: -0.09em;
+}
+
+.eyebrow {
+  color: var(--color-pine);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.67rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  margin: 0 0 1.25rem;
+  text-transform: uppercase;
+}
+
+.seasonCopy h2 {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(2.6rem, 5vw, 5.6rem);
+  font-weight: 670;
+  letter-spacing: -0.06em;
+  line-height: 0.94;
+  margin: 0;
+}
+
+.seasonMessage {
+  color: var(--color-pine);
+  font-size: clamp(1.05rem, 1.7vw, 1.45rem);
+  font-weight: 680;
+  margin: 1.4rem 0 0;
+}
+
+.seasonDescription {
+  color: rgb(22 32 30 / 0.68);
+  line-height: 1.7;
+  margin: 0.9rem 0 0;
+  max-width: 38rem;
+}
+
+.seasonAction {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.seasonAction a {
+  align-items: center;
+  background: var(--color-forest);
+  border-radius: 999px;
+  color: var(--color-sand);
+  display: flex;
+  font-size: 0.88rem;
+  font-weight: 700;
+  gap: 1.25rem;
+  justify-content: space-between;
+  min-height: 3.6rem;
+  padding: 0.55rem 0.65rem 0.55rem 1.35rem;
+  text-decoration: none;
+  transition: background-color 180ms ease, transform 180ms ease;
+  width: min(100%, 20rem);
+}
+
+.seasonAction a:hover {
+  background: var(--color-pine);
+  transform: translateY(-2px);
+}
+
+.seasonAction a span {
+  align-items: center;
+  background: var(--color-orange);
+  border-radius: 50%;
+  color: var(--color-ink);
+  display: flex;
+  font-family: var(--font-mono), monospace;
+  height: 2.4rem;
+  justify-content: center;
+  width: 2.4rem;
+}
+
+.seasonAction p {
+  color: rgb(22 32 30 / 0.55);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.62rem;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 17rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 840px) {
+  .trustList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .trustItem:nth-child(3) {
+    border-left: 0;
+    border-top: 1px solid rgb(16 44 39 / 0.13);
+  }
+
+  .trustItem:nth-child(4) {
+    border-top: 1px solid rgb(16 44 39 / 0.13);
+  }
+
+  .seasonGrid {
+    grid-template-columns: 0.45fr 1.55fr;
+  }
+
+  .seasonAction {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 560px) {
+  .trustItem {
+    min-height: 8rem;
+    padding: 1.3rem 0.85rem;
+  }
+
+  .seasonGrid {
+    align-items: start;
+    gap: 1.75rem;
+    grid-template-columns: 1fr;
+  }
+
+  .seasonStamp {
+    padding-top: 0.5rem;
+  }
+
+  .seasonStamp strong {
+    font-size: 7.5rem;
+  }
+
+  .seasonAction {
+    grid-column: auto;
+    width: 100%;
+  }
+
+  .seasonAction a {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seasonAction a {
+    transition: none;
+  }
+}

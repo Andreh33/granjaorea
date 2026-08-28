@@ -1,0 +1,59 @@
+.route {
+  inset: auto -4vw -3.5rem;
+  height: clamp(15rem, 31vw, 29rem);
+  overflow: visible;
+  pointer-events: none;
+  position: absolute;
+  width: 108vw;
+  z-index: 4;
+}
+
+.contour,
+.contourMuted,
+.mainPath {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+.contour {
+  opacity: 0.18;
+  stroke: var(--color-sand);
+  stroke-width: 1.25;
+}
+
+.contourMuted {
+  opacity: 0.1;
+  stroke: var(--color-sand);
+  stroke-width: 1;
+}
+
+.mainPath {
+  filter: drop-shadow(0 0 0.5rem rgb(240 123 54 / 0.22));
+  stroke: var(--color-orange);
+  stroke-linecap: round;
+  stroke-width: 3;
+}
+
+.marker {
+  fill: var(--color-orange);
+  stroke: var(--color-forest);
+  stroke-width: 4;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@media (max-width: 720px) {
+  .route {
+    bottom: -1.8rem;
+    height: 14rem;
+    left: -24rem;
+    width: 74rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mainPath,
+  .marker {
+    filter: none;
+  }
+}
