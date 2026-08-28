@@ -45,7 +45,7 @@
 }
 
 .intro h2 span {
-  color: var(--color-orange);
+  color: var(--color-orange-on-light);
 }
 
 .scenario {
@@ -98,7 +98,7 @@
 }
 
 .factIndex {
-  color: rgb(22 32 30 / 0.36);
+  color: #62645b;
   font-size: 0.56rem;
   padding-top: 0.45rem;
 }

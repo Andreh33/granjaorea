@@ -43,11 +43,11 @@
 }
 
 .intro h2 span {
-  color: var(--color-orange);
+  color: var(--color-orange-on-light);
 }
 
 .intro > p:last-child {
-  color: rgb(16 44 39 / 0.65);
+  color: var(--color-pine);
   line-height: 1.7;
   margin: 2rem 0 0;
   max-width: 28rem;
@@ -88,7 +88,7 @@
 }
 
 .index {
-  color: rgb(16 44 39 / 0.36);
+  color: #536864;
   font-size: 0.54rem;
 }
 

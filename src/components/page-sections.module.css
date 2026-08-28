@@ -27,7 +27,7 @@
 }
 
 .trustIndex {
-  color: rgb(16 44 39 / 0.43);
+  color: var(--color-pine);
   font-family: var(--font-mono), monospace;
   font-size: 0.6rem;
   letter-spacing: 0.12em;
@@ -82,7 +82,7 @@
 }
 
 .seasonStamp strong {
-  color: var(--color-orange);
+  color: var(--color-orange-on-light);
   font-size: clamp(6rem, 11vw, 10.5rem);
   font-variation-settings: "wdth" 85;
   font-weight: 730;
@@ -164,7 +164,7 @@
 }
 
 .seasonAction p {
-  color: rgb(22 32 30 / 0.55);
+  color: #5f625a;
   font-family: var(--font-mono), monospace;
   font-size: 0.62rem;
   line-height: 1.5;
@@ -193,7 +193,7 @@
 }
 
 .testimonialsIntro .eyebrow {
-  color: var(--color-moss);
+  color: var(--color-sand);
   grid-column: 1 / -1;
 }
 
@@ -209,7 +209,7 @@
 
 .testimonialsIntro > p:last-child {
   align-self: end;
-  color: rgb(243 233 212 / 0.63);
+  color: #d9dfc8;
   line-height: 1.7;
   margin: 0;
   max-width: 29rem;
@@ -272,7 +272,7 @@
 
 .quote figcaption span,
 .quoteIndex {
-  color: rgb(243 233 212 / 0.5);
+  color: #d9dfc8;
   font-family: var(--font-mono), monospace;
   font-size: 0.56rem;
   letter-spacing: 0.05em;
