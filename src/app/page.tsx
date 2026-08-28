@@ -1,3 +1,4 @@
+import { DayTimeline } from "@/components/day-timeline";
 import { Hero } from "@/components/hero";
 import {
   SeasonPanel,
@@ -12,6 +13,7 @@ export default function HomePage() {
       <main id="contenido">
         <Hero />
         <TrustStrip />
+        <DayTimeline />
         <SeasonPanel />
       </main>
     </>
