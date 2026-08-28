@@ -39,6 +39,7 @@ describe("siteContent", () => {
   it("avoids unconfirmed horse activities and recurring family schedules", () => {
     const publicCopy = JSON.stringify(siteContent);
     expect(publicCopy).not.toMatch(/sábados y domingos por la mañana/i);
+    expect(publicCopy).not.toMatch(/fines de semana|fin de semana/i);
     expect(publicCopy).not.toMatch(/clases de hípica|rutas a caballo|todos los fines de semana/i);
     expect(publicCopy).toMatch(/con cita previa/i);
   });

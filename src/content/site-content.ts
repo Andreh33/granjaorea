@@ -202,7 +202,7 @@ export const siteContent = {
     {
       id: "familias",
       number: "01",
-      eyebrow: "Fines de semana con cita previa",
+      eyebrow: "Visitas familiares con cita previa",
       title: "Visitas en familia",
       description:
         "Un plan para grandes y pequeños: conocer los animales, respirar campo y compartir una mañana diferente muy cerca de Ciudad Real.",
