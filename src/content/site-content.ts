@@ -1,5 +1,29 @@
 import { campSeason, oreaLocation, type CampSeason } from "./camp-config";
 
+export type PillarId = "granja" | "hipica" | "campamentos";
+
+export interface Pillar {
+  readonly id: PillarId;
+  readonly label: string;
+  readonly eyebrow: string;
+  readonly headline: string;
+  readonly summary: string;
+  readonly detail: string;
+  readonly image: string;
+  readonly imageAlt: string;
+  readonly focalPoint: string;
+  readonly href: string;
+  readonly ctaLabel: string;
+  readonly tone: "straw" | "olive" | "clay";
+}
+
+export interface PhotoCredit {
+  readonly file: string;
+  readonly author: string;
+  readonly sourceUrl: string;
+}
+
+/** @deprecated Retained until the year-round section consumes pillars. */
 export interface Experience {
   readonly id: "familias" | "colegios" | "celebraciones" | "verano";
   readonly number: string;
@@ -66,6 +90,8 @@ export interface SiteContent {
     readonly label: string;
     readonly href: string;
   }[];
+  readonly pillars: readonly Pillar[];
+  readonly photoCredits: readonly PhotoCredit[];
   readonly hero: {
     readonly eyebrow: string;
     readonly title: string;
@@ -99,6 +125,9 @@ export const siteContent = {
     },
   },
   navigation: [
+    { label: "Granja", href: "#granja" },
+    { label: "Hípica", href: "#hipica" },
+    { label: "Campamentos", href: "#campamentos" },
     { label: "Experiencias", href: "#experiencias" },
     { label: "Galería", href: "#instalaciones" },
     { label: "Campamento", href: "#temporada" },
@@ -106,7 +135,7 @@ export const siteContent = {
   ],
   hero: {
     eyebrow: "Granja escuela en Ciudad Real · Todo el año",
-    title: "Naturaleza para vivirla. Todo el año.",
+    title: "Granja, caballos y aventura. Todo el año.",
     description:
       "Familias, colegios, grupos y campamentos encuentran en Orea un lugar donde salir de la rutina, convivir y volver a mirar la naturaleza de cerca.",
     facts: [
@@ -116,6 +145,59 @@ export const siteContent = {
     ],
   },
   season: campSeason,
+  pillars: [
+    {
+      id: "granja",
+      label: "Granja escuela",
+      eyebrow: "Animales, naturaleza y aprendizaje",
+      headline: "La granja se descubre con todos los sentidos.",
+      summary: "Acercarse a los animales, aprender a cuidar lo vivo y compartir el campo convierte cada visita en una experiencia que se entiende haciéndola.",
+      detail: "Familias, colegios y grupos · con cita previa",
+      image: "/images/orea/stock-farm.jpg",
+      imageAlt: "Niño sosteniendo una cría de cabra sobre la hierba",
+      focalPoint: "50% 50%",
+      href: "#granja",
+      ctaLabel: "Descubrir la granja",
+      tone: "straw",
+    },
+    {
+      id: "hipica",
+      label: "Hípica",
+      eyebrow: "Caballos, cuidado y confianza",
+      headline: "El caballo enseña otra forma de estar.",
+      summary: "El mundo del caballo invita a observar, respetar y ganar confianza. Orea prepara la propuesta disponible según la fecha, la edad y el grupo.",
+      detail: "Formato y disponibilidad a confirmar con Orea",
+      image: "/images/orea/stock-horse.jpg",
+      imageAlt: "Niña con casco montando a caballo delante de un establo",
+      focalPoint: "54% 48%",
+      href: "#hipica",
+      ctaLabel: "Conocer la propuesta hípica",
+      tone: "olive",
+    },
+    {
+      id: "campamentos",
+      label: "Campamentos",
+      eyebrow: `Convivencia y aventura · verano ${campSeason.year}`,
+      headline: "Días que ayudan a crecer.",
+      summary: "Naturaleza, convivencia y autonomía para hacer amigos, asumir pequeños retos y volver con historias que duran mucho más que una quincena.",
+      detail: "Dos quincenas · 6 a 16 años",
+      image: "/images/orea/stock-group.jpg",
+      imageAlt: "Grupo de niños reunido durante un juego al aire libre",
+      focalPoint: "50% 50%",
+      href: "#campamentos",
+      ctaLabel: "Ver los campamentos",
+      tone: "clay",
+    },
+  ],
+  photoCredits: [
+    { file: "stock-trail.jpg", author: "Annie Spratt", sourceUrl: "https://unsplash.com/photos/girl-and-boy-walking-on-forest-trail-GIK1tsETnXI" },
+    { file: "stock-hero.jpg", author: "Daria Trofimova", sourceUrl: "https://unsplash.com/photos/a-group-of-children-walking-through-a-forest-u2jcCo5KJIA" },
+    { file: "stock-farm.jpg", author: "Imdad Jayd", sourceUrl: "https://unsplash.com/photos/a-young-child-holds-a-spotted-baby-goat-on-grass-40i2WzrJBo0" },
+    { file: "stock-adventure.jpg", author: "Aarón Blanco Tejedor", sourceUrl: "https://unsplash.com/photos/child-climbing-over-rocks-in-nature-DmXTuoL17Ao" },
+    { file: "stock-celebration.jpg", author: "nugh hade", sourceUrl: "https://unsplash.com/photos/children-playing-a-balloon-race-outdoors-with-adults-watching-uNIzjTX6T4U" },
+    { file: "stock-horse.jpg", author: "Josh Withers", sourceUrl: "https://unsplash.com/photos/a-young-child-riding-a-horse-in-front-of-a-barn-egbrBASop94" },
+    { file: "stock-group.jpg", author: "setengah limasore", sourceUrl: "https://unsplash.com/photos/children-are-gathered-together-outside-possibly-playing-TZFZwWqwVRM" },
+  ],
   experiences: [
     {
       id: "familias",
@@ -124,7 +206,7 @@ export const siteContent = {
       title: "Visitas en familia",
       description:
         "Un plan para grandes y pequeños: conocer los animales, respirar campo y compartir una mañana diferente muy cerca de Ciudad Real.",
-      detail: "Sábados y domingos por la mañana",
+      detail: "Visitas con cita previa",
       image: "/images/orea/stock-farm.jpg",
       imageAlt: "Niño sosteniendo con cuidado una cría de cabra en el campo",
       focalPoint: "50% 52%",
@@ -141,7 +223,7 @@ export const siteContent = {
         "Visitas y convivencias que se plantean según la edad, los objetivos y el tiempo disponible de cada centro o colectivo.",
       detail: "Programas adaptados a cada grupo",
       image: "/images/orea/stock-hero.jpg",
-      imageAlt: "Grupo de niños participando en una jornada de cuidado del bosque",
+      imageAlt: "Grupo de niños caminando juntos por un bosque",
       focalPoint: "68% 50%",
       href: "#contacto",
       linkLabel: "Consultar para un grupo",
@@ -245,21 +327,21 @@ export const siteContent = {
     {
       id: "maria",
       quote:
-        "Mi hija salía de casa tantos días por primera vez y volvió encantada. Destaco la profesionalidad de los monitores y la tranquilidad con la que vivimos la experiencia.",
+        "Mi hija salía de casa tantos días por primera vez y volvió encantada. Destaco la profesionalidad de los monitores y la tranquilidad de saber que había atención médica a diez minutos. Repetimos seguro.",
       name: "María J.",
       context: "Madre de una participante · testimonio compartido con Orea",
     },
     {
       id: "carlos",
       quote:
-        "Los niños no paran y la desconexión del móvil les viene genial. Volvió hablando de amigos, animales y retos que pensaba que no podía superar.",
+        "Los niños no paran en todo el día y la política de no usar el móvil les viene genial para desconectar de verdad. Una experiencia de diez.",
       name: "Carlos R.",
       context: "Padre de un participante · testimonio compartido con Orea",
     },
     {
       id: "elena",
       quote:
-        "Llevamos confiando en Orea tres años seguidos. Se nota la experiencia y el cariño con el que el equipo acompaña al grupo.",
+        "Llevamos confiando en Orea Camp tres años seguidos. La comida es casera y se nota la experiencia de tantos años organizando esto.",
       name: "Elena F.",
       context: "Madre de dos participantes · testimonio compartido con Orea",
     },
@@ -269,7 +351,7 @@ export const siteContent = {
       id: "family-visits",
       question: "¿Cuándo se puede visitar Orea en familia?",
       answer:
-        "Las visitas familiares se organizan con cita previa los sábados y domingos por la mañana. Escríbenos por WhatsApp para confirmar fecha, horario y propuesta antes de desplazarte.",
+        "Las visitas familiares se organizan con cita previa. Escríbenos por WhatsApp para confirmar fecha, horario y propuesta antes de desplazarte.",
     },
     {
       id: "schools",
