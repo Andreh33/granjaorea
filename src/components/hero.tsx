@@ -13,7 +13,7 @@ const heroWhatsAppUrl = buildWhatsAppUrl(
 
 export function Hero() {
   return (
-    <section aria-labelledby="hero-title" className={styles.hero}>
+    <section aria-labelledby="hero-title" className={styles.hero} id="inicio">
       <div className={styles.light} aria-hidden="true" />
       <div className={styles.shell}>
         <div className={styles.copy}>

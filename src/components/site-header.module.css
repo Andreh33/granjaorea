@@ -1,0 +1,264 @@
+.header {
+  left: 0;
+  padding: 0.85rem var(--page-gutter) 0;
+  pointer-events: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 100;
+}
+
+.bar {
+  align-items: center;
+  backdrop-filter: blur(18px);
+  background: rgb(16 44 39 / 0.84);
+  border: 1px solid rgb(243 233 212 / 0.15);
+  border-radius: 0.8rem;
+  box-shadow: 0 0.7rem 2rem rgb(0 0 0 / 0.1);
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: auto 1fr auto;
+  margin: 0 auto;
+  max-width: var(--content-max);
+  min-height: 4.1rem;
+  padding: 0.45rem 0.55rem 0.45rem 0.8rem;
+  pointer-events: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.logo {
+  align-items: center;
+  color: var(--color-sand);
+  display: inline-flex;
+  gap: 0.65rem;
+  text-decoration: none;
+}
+
+.logo svg {
+  height: 2.5rem;
+  overflow: visible;
+  width: 2.5rem;
+}
+
+.logo svg > circle:first-child {
+  fill: var(--color-orange);
+  stroke: none;
+}
+
+.logo svg path {
+  fill: none;
+  stroke: var(--color-forest);
+  stroke-linecap: round;
+  stroke-width: 1.8;
+}
+
+.logo svg > circle:last-child {
+  fill: var(--color-forest);
+}
+
+.logo > span {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.1rem;
+  font-weight: 650;
+  letter-spacing: -0.05em;
+  line-height: 0.72;
+}
+
+.logo strong {
+  color: var(--color-moss);
+  font-weight: 560;
+}
+
+.desktopNav {
+  justify-self: center;
+}
+
+.desktopNav ul {
+  align-items: center;
+  display: flex;
+  gap: clamp(1rem, 2.2vw, 2.3rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.desktopNav a {
+  color: rgb(243 233 212 / 0.72);
+  font-size: 0.73rem;
+  font-weight: 620;
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.desktopNav a:hover {
+  color: var(--color-sand);
+}
+
+.seasonLink {
+  align-items: center;
+  background: var(--color-sand);
+  border-radius: 999px;
+  color: var(--color-ink);
+  display: flex;
+  font-size: 0.72rem;
+  font-weight: 700;
+  gap: 1rem;
+  min-height: 3rem;
+  padding: 0.4rem 0.45rem 0.4rem 1.05rem;
+  text-decoration: none;
+}
+
+.seasonLink span {
+  align-items: center;
+  background: var(--color-orange);
+  border-radius: 50%;
+  display: flex;
+  height: 2.15rem;
+  justify-content: center;
+  width: 2.15rem;
+}
+
+.mobileMenu {
+  display: none;
+}
+
+.menuTrigger {
+  align-items: center;
+  background: var(--color-orange);
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  height: 2.8rem;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+  width: 2.8rem;
+  z-index: 3;
+}
+
+.menuTrigger span {
+  background: var(--color-forest);
+  height: 1.5px;
+  transition: transform 180ms ease;
+  width: 1rem;
+}
+
+.menuTrigger[aria-expanded="true"] span:first-child {
+  transform: translateY(0.22rem) rotate(45deg);
+}
+
+.menuTrigger[aria-expanded="true"] span:last-child {
+  transform: translateY(-0.22rem) rotate(-45deg);
+}
+
+.menuDialog {
+  background: var(--color-forest);
+  color: var(--color-sand);
+  display: flex;
+  flex-direction: column;
+  inset: 0;
+  min-height: 100dvh;
+  padding: 7.5rem var(--page-gutter) max(2rem, env(safe-area-inset-bottom));
+  pointer-events: auto;
+  position: fixed;
+  z-index: 1;
+}
+
+.mobileNav {
+  margin: auto 0;
+}
+
+.mobileNav ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mobileNav li {
+  align-items: baseline;
+  border-top: 1px solid rgb(243 233 212 / 0.18);
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  padding: 0.9rem 0;
+}
+
+.mobileNav li:last-child {
+  border-bottom: 1px solid rgb(243 233 212 / 0.18);
+}
+
+.mobileNav li > span,
+.mobileMenuMeta {
+  color: var(--color-moss);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.56rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.mobileNav li a {
+  color: var(--color-sand);
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(2.5rem, 12vw, 4.8rem);
+  font-weight: 620;
+  letter-spacing: -0.06em;
+  line-height: 0.95;
+  text-decoration: none;
+}
+
+.mobileSeasonLink {
+  align-items: center;
+  color: var(--color-orange);
+  display: flex;
+  font-weight: 700;
+  justify-content: space-between;
+  margin-top: 1.7rem;
+  text-decoration: none;
+}
+
+.mobileMenuMeta {
+  margin: 2rem 0 0;
+}
+
+@media (max-width: 850px) {
+  .bar {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .desktopNav,
+  .seasonLink {
+    display: none;
+  }
+
+  .mobileMenu {
+    display: block;
+    grid-column: 3;
+  }
+}
+
+@media (max-width: 520px) {
+  .header {
+    padding-inline: 0.7rem;
+  }
+
+  .bar {
+    min-height: 3.75rem;
+  }
+
+  .logo svg {
+    height: 2.25rem;
+    width: 2.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .desktopNav a,
+  .menuTrigger span {
+    transition: none;
+  }
+}
