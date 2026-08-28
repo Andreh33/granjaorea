@@ -20,8 +20,8 @@ export default function HomePage() {
       <SiteHeader />
       <main id="contenido">
         <Hero />
-        <TrustStrip />
         <PillarGateways />
+        <TrustStrip />
         <PhotoGallery />
         <CareSection />
         <Testimonials />
