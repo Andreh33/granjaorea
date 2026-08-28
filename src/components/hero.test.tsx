@@ -3,16 +3,14 @@ import { expect, it } from "vitest";
 
 import { Hero } from "./hero";
 
-it("positions Orea for the whole year and keeps summer conversion available", () => {
+it("names the three Orea worlds in the first conversion block", () => {
   render(<Hero />);
 
   expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-    "Naturaleza para vivirla. Todo el año.",
+    "Granja, caballos y aventura. Todo el año.",
   );
   expect(
-    screen.getByRole("link", { name: /calcular campamento/i }),
-  ).toHaveAttribute("href", "#temporada");
-  expect(
-    screen.getByRole("link", { name: /descubrir experiencias/i }),
-  ).toHaveAttribute("href", "#experiencias");
+    screen.getByRole("link", { name: /elegir una experiencia/i }),
+  ).toHaveAttribute("href", "#pilares");
+  expect(screen.queryByText("35+")).toBeNull();
 });

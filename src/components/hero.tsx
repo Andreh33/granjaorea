@@ -8,30 +8,14 @@ import styles from "./hero.module.css";
 export function Hero() {
   return (
     <section aria-labelledby="hero-title" className={styles.hero} id="inicio">
-      <Image
-        alt=""
-        className={styles.backgroundImage}
-        fill
-        preload
-        quality={90}
-        sizes="100vw"
-        src="/images/orea/stock-trail.jpg"
-      />
-      <div aria-hidden="true" className={styles.backgroundWash} />
-      <div className={styles.light} aria-hidden="true" />
       <div className={styles.shell}>
-        <div className={styles.copy}>
+        <div className={styles.copyPanel}>
           <HeroEntrance delay={0.05}>
-            <p className={styles.eyebrow}>
-              <span aria-hidden="true" className={styles.eyebrowMark} />
-              {siteContent.hero.eyebrow}
-            </p>
+            <p className={styles.eyebrow}>{siteContent.hero.eyebrow}</p>
           </HeroEntrance>
 
           <h1 className={styles.title} id="hero-title">
-            <span>Naturaleza </span>
-            <span>para vivirla. </span>
-            <span className={styles.titleAccent}>Todo el año.</span>
+            {siteContent.hero.title}
           </h1>
 
           <HeroEntrance delay={0.2}>
@@ -40,31 +24,27 @@ export function Hero() {
 
           <HeroEntrance className={styles.actionWrap} delay={0.28}>
             <div className={styles.actions}>
-              <a
-                className={styles.primaryAction}
-                href="#temporada"
-              >
-                Calcular campamento
-                <span aria-hidden="true" className={styles.actionArrow}>
-                  ↓
-                </span>
+              <a className={styles.primaryAction} href="#pilares">
+                Elegir una experiencia
               </a>
-              <a className={styles.secondaryAction} href="#experiencias">
-                Descubrir experiencias
-                <span aria-hidden="true">↓</span>
+              <a className={styles.secondaryAction} href="#temporada">
+                Ver campamentos 2027
               </a>
             </div>
-            <ul className={styles.heroFacts} aria-label="Datos clave de Orea">
-              {siteContent.hero.facts.map((fact) => (
-                <li key={fact.label}>
-                  <strong>{fact.value}</strong>
-                  <span>{fact.label}</span>
-                </li>
-              ))}
-            </ul>
           </HeroEntrance>
         </div>
-        <p className={styles.locationStamp}>La Atalaya · Ciudad Real · 38.98° N</p>
+
+        <div className={styles.photoPanel}>
+          <Image
+            alt="Dos niños recorriendo juntos un sendero entre árboles"
+            className={styles.backgroundImage}
+            fill
+            preload
+            quality={90}
+            sizes="100vw"
+            src="/images/orea/stock-trail.jpg"
+          />
+        </div>
       </div>
     </section>
   );

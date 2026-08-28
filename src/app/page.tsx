@@ -4,6 +4,7 @@ import { ConversionCta } from "@/components/conversion-cta";
 import { Faq } from "@/components/faq";
 import { Hero } from "@/components/hero";
 import { LocationMap } from "@/components/location-map";
+import { PillarGateways } from "@/components/pillar-gateways";
 import { PhotoGallery } from "@/components/photo-gallery";
 import {
   StructuredData,
@@ -11,7 +12,6 @@ import {
   TrustStrip,
 } from "@/components/page-sections";
 import { SiteHeader } from "@/components/site-header";
-import { YearRoundExperiences } from "@/components/year-round-experiences";
 
 export default function HomePage() {
   return (
@@ -21,7 +21,7 @@ export default function HomePage() {
       <main id="contenido">
         <Hero />
         <TrustStrip />
-        <YearRoundExperiences />
+        <PillarGateways />
         <PhotoGallery />
         <CareSection />
         <Testimonials />
