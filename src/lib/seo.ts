@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-import { campSeason } from "@/content/camp-config";
 import { siteContent } from "@/content/site-content";
 
 const CANONICAL_URL = `${siteContent.organization.url}/`;
@@ -19,8 +18,9 @@ export interface FaqJsonLd {
 }
 
 export function buildMetadata(): Metadata {
-  const title = "Granja escuela y campamentos en Ciudad Real | Orea";
-  const description = `Granja escuela en Ciudad Real con experiencias todo el año para familias, colegios y grupos, celebraciones y campamento de verano ${campSeason.year}.`;
+  const title = "Granja escuela, hípica y campamentos en Ciudad Real | Orea";
+  const description =
+    "Granja escuela, experiencias hípicas y campamentos en Ciudad Real para familias, colegios y grupos. Naturaleza y convivencia durante todo el año.";
 
   return {
     metadataBase: new URL(siteContent.organization.url),
@@ -33,7 +33,9 @@ export function buildMetadata(): Metadata {
       "visitas familiares Ciudad Real",
       "convivencias escolares Ciudad Real",
       "cumpleaños granja escuela",
-      "campamento de verano Ciudad Real",
+      "hípica Ciudad Real",
+      "caballos para niños Ciudad Real",
+      "campamentos Ciudad Real",
       "Granja Escuela Orea",
     ],
     alternates: {
@@ -51,7 +53,7 @@ export function buildMetadata(): Metadata {
           url: "/opengraph-image",
           width: 1200,
           height: 630,
-          alt: "Granja Escuela Orea, naturaleza y campamentos en Ciudad Real",
+          alt: "Granja Escuela Orea: granja escuela, hípica y campamentos en Ciudad Real",
         },
       ],
     },
@@ -93,7 +95,7 @@ export function buildOrganizationJsonLd() {
     telephone: organization.phoneDisplay,
     foundingDate: "1990",
     description:
-      "Granja escuela y experiencias en la naturaleza para familias, colegios, grupos y campamentos de verano en Ciudad Real.",
+      "Granja escuela, experiencias hípicas y campamentos en Ciudad Real para familias, colegios y grupos durante todo el año.",
     address: {
       "@type": "PostalAddress" as const,
       streetAddress: organization.address.street,

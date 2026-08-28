@@ -113,7 +113,7 @@ export const siteContent = {
   organization: {
     name: "Granja Escuela Orea",
     legalName: "Servicios Integrales Ciudad Real S.L.",
-    url: "https://campamentos.granjaorea.com",
+    url: "https://granjaorea.vercel.app",
     email: "granjaorea@hotmail.com",
     phoneDisplay: "+34 615 367 717",
     phoneE164: "34615367717",

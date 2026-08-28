@@ -7,17 +7,24 @@ import {
 } from "./seo";
 
 describe("SEO builders", () => {
-  it("builds a location-rich canonical metadata object", () => {
+  it("describes all three pillars on the URL that serves this page", () => {
     const metadata = buildMetadata();
 
     expect(metadata.alternates?.canonical).toBe(
-      "https://campamentos.granjaorea.com/",
+      "https://granjaorea.vercel.app/",
     );
     expect(String(metadata.title)).toBe(
-      "Granja escuela y campamentos en Ciudad Real | Orea",
+      "Granja escuela, hípica y campamentos en Ciudad Real | Orea",
     );
-    expect(metadata.description).toMatch(/todo el año/i);
-    expect(metadata.description).toMatch(/familias.*colegios.*campamento/i);
+    expect(metadata.description).toMatch(/granja.*hípica.*campamentos/i);
+    expect(metadata.keywords).toContain("hípica Ciudad Real");
+  });
+
+  it("uses the annual Orea icon as organization logo", () => {
+    const data = buildOrganizationJsonLd();
+
+    expect(data.name).toBe("Granja Escuela Orea");
+    expect(data.logo).toBe("https://granjaorea.vercel.app/icon.svg");
   });
 
   it("mirrors every visible FAQ entry into valid FAQPage JSON-LD", () => {

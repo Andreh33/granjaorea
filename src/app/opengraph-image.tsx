@@ -1,9 +1,8 @@
 import { ImageResponse } from "next/og";
 
-import { campSeason } from "@/content/camp-config";
-
 export const runtime = "nodejs";
-export const alt = "Granja Escuela Orea, naturaleza todo el año en Ciudad Real";
+export const alt =
+  "Granja Escuela Orea: granja escuela, hípica y campamentos en Ciudad Real";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -12,25 +11,23 @@ export default function OpenGraphImage() {
     <div
       style={{
         alignItems: "stretch",
-        background: "#102c27",
-        color: "#f3e9d4",
+        background: "#fbfaf5",
+        color: "#183b2b",
         display: "flex",
         fontFamily: "Arial, sans-serif",
         height: "100%",
         overflow: "hidden",
-        padding: "70px 76px",
+        padding: "64px 72px",
         position: "relative",
         width: "100%",
       }}
     >
       <div
         style={{
-          border: "2px solid rgba(243, 233, 212, 0.18)",
-          borderRadius: 40,
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          padding: "58px 62px",
+          position: "relative",
           width: "100%",
         }}
       >
@@ -38,66 +35,82 @@ export default function OpenGraphImage() {
           style={{
             alignItems: "center",
             display: "flex",
-            fontSize: 25,
-            fontWeight: 700,
-            gap: 16,
-            letterSpacing: 3,
+            color: "#7b8042",
+            fontFamily: "Georgia, serif",
+            fontSize: 34,
+            fontWeight: 800,
+            gap: 20,
+            letterSpacing: 5,
             textTransform: "uppercase",
           }}
         >
           <span
             style={{
-              background: "#f07b36",
-              borderRadius: 999,
+              background: "#c7643d",
               display: "flex",
-              height: 20,
-              width: 20,
+              height: 5,
+              width: 72,
             }}
           />
-          Granja Escuela Orea · Ciudad Real
+          OREA
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
           <div
             style={{
               display: "flex",
-              fontSize: 76,
+              fontFamily: "Georgia, serif",
+              fontSize: 78,
               fontWeight: 800,
-              letterSpacing: -4,
-              lineHeight: 0.98,
-              maxWidth: 930,
+              letterSpacing: -3,
+              lineHeight: 1.02,
+              maxWidth: 900,
             }}
           >
-            Naturaleza para vivirla. Todo el año.
+            Naturaleza para aprender. Todo el año.
           </div>
           <div
             style={{
-              color: "#a8b58b",
+              color: "#183b2b",
               display: "flex",
-              fontSize: 28,
+              fontSize: 30,
               fontWeight: 600,
             }}
           >
-            Familias · colegios · grupos · verano {campSeason.year}
+            Granja escuela · Hípica · Campamentos
           </div>
+        </div>
+        <div
+          style={{
+            alignItems: "center",
+            color: "#7b8042",
+            display: "flex",
+            fontSize: 23,
+            fontWeight: 700,
+            justifyContent: "space-between",
+            letterSpacing: 1,
+          }}
+        >
+          <span>Ciudad Real</span>
+          <span>Desde 1990</span>
         </div>
       </div>
       <svg
         height="630"
-        style={{ opacity: 0.22, position: "absolute", right: -120, top: 0 }}
-        viewBox="0 0 520 630"
-        width="520"
+        style={{ opacity: 0.16, position: "absolute", right: -80, top: 0 }}
+        viewBox="0 0 560 630"
+        width="560"
       >
         <path
-          d="M85 30C285 75 35 175 310 235C500 276 150 350 395 430C520 470 260 555 480 612"
+          d="M65 18C290 88 42 172 332 238C532 284 164 358 426 438C548 476 292 554 522 616"
           fill="none"
-          stroke="#f3e9d4"
-          strokeWidth="3"
+          stroke="#7b8042"
+          strokeWidth="4"
         />
         <path
-          d="M160 5C340 105 92 150 380 215C540 250 225 340 460 392C570 420 355 520 515 580"
+          d="M152 2C356 102 94 158 398 222C550 254 238 344 488 402C584 426 374 520 548 586"
           fill="none"
-          stroke="#f07b36"
-          strokeWidth="6"
+          stroke="#c7643d"
+          strokeWidth="7"
         />
       </svg>
     </div>,

@@ -22,6 +22,7 @@ npm run lint
 npm run typecheck
 npm test
 npm run build
+npm run audit:lighthouse
 npm run test:e2e
 ```
 
@@ -66,9 +67,11 @@ Todas se descargaron desde páginas que las identifican como gratuitas bajo la [
 - Metadatos, canonical y Open Graph: `src/lib/seo.ts`.
 - Datos estructurados Organization, WebSite y FAQPage: `src/components/page-sections.tsx`.
 - `robots.txt`, `sitemap.xml`, icono y Open Graph se generan desde App Router.
-- Canonical de producción: `https://campamentos.granjaorea.com/`.
+- Canonical actual: `https://granjaorea.vercel.app/`. Se mantendrá hasta que `campamentos.granjaorea.com` esté conectado al proyecto de Vercel y se complete el cambio de DNS; entonces se actualizará la URL central en `src/content/site-content.ts`.
 - El menú, FAQ, calculadora, mapa, flujo sin JavaScript y preferencias de movimiento reducido tienen cobertura automatizada.
 - Las fotografías se sirven localmente y Next.js genera tamaños optimizados; no dependen de un CDN fotográfico de terceros durante la visita.
+
+La auditoría local de Lighthouse se ejecuta con `npm run audit:lighthouse`. Los créditos públicos de las fotografías aparecen en el pie de la web y su fuente se mantiene en `siteContent.photoCredits`, dentro de `src/content/site-content.ts`.
 
 ## GitHub y Vercel
 
