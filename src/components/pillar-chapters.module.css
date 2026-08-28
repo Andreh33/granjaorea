@@ -1,0 +1,130 @@
+.section {
+  background: var(--color-chalk);
+}
+
+.chapter {
+  background: var(--color-chalk);
+  color: var(--color-ink);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-height: clamp(36rem, 55vw, 48rem);
+}
+
+.chapter[data-tone="olive"] {
+  background: var(--color-straw);
+}
+
+.chapter[data-tone="clay"] {
+  background: color-mix(
+    in srgb,
+    var(--color-olive) 18%,
+    var(--color-chalk)
+  );
+}
+
+.media {
+  min-height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.copy {
+  align-content: center;
+  display: grid;
+  padding: clamp(3rem, 7vw, 8rem) var(--page-gutter);
+}
+
+.chapter:nth-child(even) .media {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.chapter:nth-child(even) .copy {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.eyebrow {
+  color: var(--color-olive);
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.11em;
+  line-height: 1.5;
+  margin: 0 0 clamp(1.5rem, 3vw, 2.75rem);
+  text-transform: uppercase;
+}
+
+.copy h2 {
+  color: var(--color-forest);
+  font-family: var(--font-display), serif;
+  font-size: clamp(3rem, 5.6vw, 6.5rem);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+  margin: 0;
+  max-width: 10ch;
+  text-wrap: balance;
+}
+
+.summary {
+  font-size: clamp(1rem, 1.25vw, 1.18rem);
+  line-height: 1.7;
+  margin: clamp(2rem, 3vw, 3rem) 0 0;
+  max-width: 37rem;
+}
+
+.detail {
+  border-top: 1px solid color-mix(in srgb, var(--color-ink) 20%, transparent);
+  color: color-mix(in srgb, var(--color-ink) 72%, transparent);
+  font-size: 0.76rem;
+  line-height: 1.55;
+  margin: clamp(2rem, 4vw, 3.5rem) 0 0;
+  padding-top: 1rem;
+}
+
+.copy a {
+  align-items: center;
+  align-self: start;
+  background: var(--color-forest);
+  border-radius: 999px;
+  color: var(--color-chalk);
+  display: inline-flex;
+  font-size: 0.78rem;
+  font-weight: 750;
+  justify-self: start;
+  margin-top: 1.5rem;
+  min-height: 3rem;
+  padding: 0.8rem 1.2rem;
+  text-decoration: none;
+}
+
+.chapter[data-tone="clay"] .copy a {
+  background: var(--color-clay);
+}
+
+@media (max-width: 760px) {
+  .chapter {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .media,
+  .chapter:nth-child(even) .media {
+    aspect-ratio: 4 / 3;
+    grid-column: 1;
+    grid-row: 1;
+    min-height: 0;
+  }
+
+  .copy,
+  .chapter:nth-child(even) .copy {
+    grid-column: 1;
+    grid-row: 2;
+    min-height: 31rem;
+    padding-block: clamp(3.5rem, 14vw, 6rem);
+  }
+}

@@ -4,6 +4,7 @@ import { ConversionCta } from "@/components/conversion-cta";
 import { Faq } from "@/components/faq";
 import { Hero } from "@/components/hero";
 import { LocationMap } from "@/components/location-map";
+import { PillarChapters } from "@/components/pillar-chapters";
 import { PillarGateways } from "@/components/pillar-gateways";
 import { PhotoGallery } from "@/components/photo-gallery";
 import {
@@ -21,6 +22,7 @@ export default function HomePage() {
       <main id="contenido">
         <Hero />
         <PillarGateways />
+        <PillarChapters />
         <TrustStrip />
         <PhotoGallery />
         <CareSection />
