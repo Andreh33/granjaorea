@@ -1,2 +1,26 @@
 .worktrees/
 
+# dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+
+# test output
+coverage/
+playwright-report/
+test-results/
+
+# local environment
+.env*
+!.env.example
+
+# Vercel project link
+.vercel/
+
+# editors and operating systems
+.DS_Store
+Thumbs.db
+*.tsbuildinfo
+
