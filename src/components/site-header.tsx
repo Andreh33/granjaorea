@@ -1,7 +1,12 @@
 import { siteContent } from "@/content/site-content";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 import { HeaderMobileMenu } from "./header-mobile-menu";
 import styles from "./site-header.module.css";
+
+const headerWhatsAppUrl = buildWhatsAppUrl(
+  "Hola, quiero preparar una visita a Granja Escuela Orea.",
+);
 
 export function SiteHeader() {
   return (
@@ -22,9 +27,14 @@ export function SiteHeader() {
           </ul>
         </nav>
 
-        <a className={styles.seasonLink} href="#temporada">
-          Verano {siteContent.season.year}
-          <span aria-hidden="true">↘</span>
+        <a
+          className={styles.whatsAppLink}
+          href={headerWhatsAppUrl}
+          rel="noreferrer"
+          target="_blank"
+        >
+          Escribir por WhatsApp
+          <span aria-hidden="true">↗</span>
         </a>
 
         <HeaderMobileMenu links={siteContent.navigation} />

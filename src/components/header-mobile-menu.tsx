@@ -3,9 +3,13 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
-import { campSeason } from "@/content/camp-config";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 import styles from "./site-header.module.css";
+
+const headerWhatsAppUrl = buildWhatsAppUrl(
+  "Hola, quiero preparar una visita a Granja Escuela Orea.",
+);
 
 interface NavigationLink {
   readonly href: string;
@@ -105,12 +109,14 @@ export function HeaderMobileMenu({ links }: HeaderMobileMenuProps) {
               ))}
             </ol>
             <a
-              className={styles.mobileSeasonLink}
-              href="#temporada"
+              className={styles.mobileWhatsAppLink}
+              href={headerWhatsAppUrl}
               onClick={closeAndRestoreFocus}
+              rel="noreferrer"
+              target="_blank"
             >
-              Turnos y precios {campSeason.year}
-              <span aria-hidden="true">↘</span>
+              Escribir por WhatsApp
+              <span aria-hidden="true">↗</span>
             </a>
           </nav>
           <p className={styles.mobileMenuMeta}>

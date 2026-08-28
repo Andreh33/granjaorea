@@ -128,10 +128,8 @@ export const siteContent = {
     { label: "Granja", href: "#granja" },
     { label: "Hípica", href: "#hipica" },
     { label: "Campamentos", href: "#campamentos" },
-    { label: "Experiencias", href: "#experiencias" },
-    { label: "Galería", href: "#instalaciones" },
-    { label: "Campamento", href: "#temporada" },
-    { label: "Ubicación", href: "#ubicacion" },
+    { label: "Visitas", href: "#experiencias" },
+    { label: "Contacto", href: "#contacto" },
   ],
   hero: {
     eyebrow: "Granja escuela en Ciudad Real · Todo el año",

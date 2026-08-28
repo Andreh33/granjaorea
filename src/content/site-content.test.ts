@@ -29,10 +29,12 @@ describe("siteContent", () => {
       "campamentos",
     ]);
     expect(siteContent.pillars).toHaveLength(3);
-    expect(siteContent.navigation.slice(0, 3)).toEqual([
+    expect(siteContent.navigation).toEqual([
       { label: "Granja", href: "#granja" },
       { label: "Hípica", href: "#hipica" },
       { label: "Campamentos", href: "#campamentos" },
+      { label: "Visitas", href: "#experiencias" },
+      { label: "Contacto", href: "#contacto" },
     ]);
   });
 

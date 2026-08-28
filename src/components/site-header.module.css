@@ -81,7 +81,7 @@
   text-decoration-color: var(--color-clay);
 }
 
-.seasonLink {
+.whatsAppLink {
   align-items: center;
   background: var(--color-olive);
   border-radius: 999px;
@@ -95,7 +95,7 @@
   text-decoration: none;
 }
 
-.seasonLink span {
+.whatsAppLink span {
   align-items: center;
   background: var(--color-pine);
   border-radius: 50%;
@@ -204,7 +204,7 @@
   text-underline-offset: 0.3rem;
 }
 
-.mobileSeasonLink {
+.mobileWhatsAppLink {
   align-items: center;
   color: var(--color-straw);
   display: flex;
@@ -224,7 +224,7 @@
   }
 
   .desktopNav,
-  .seasonLink {
+  .whatsAppLink {
     display: none;
   }
 
