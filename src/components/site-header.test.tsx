@@ -3,6 +3,14 @@ import { expect, it } from "vitest";
 
 import { SiteHeader } from "./site-header";
 
+it("exposes all three pillars in desktop and mobile navigation", () => {
+  render(<SiteHeader />);
+  expect(screen.getAllByRole("link", { name: /^granja$/i }).length).toBeGreaterThan(0);
+  expect(screen.getAllByRole("link", { name: /^hípica$/i }).length).toBeGreaterThan(0);
+  expect(screen.getAllByRole("link", { name: /^campamentos$/i }).length).toBeGreaterThan(0);
+  expect(screen.queryByText(/naturaleza · ciudad real/i)).toBeNull();
+});
+
 it("opens an accessible Spanish menu with real section links", () => {
   render(<SiteHeader />);
 

@@ -9,7 +9,7 @@ export function SiteHeader() {
       <div className={styles.bar}>
         <a className={styles.logo} href="#inicio">
           <strong>OREA</strong>
-          <span>Naturaleza · Ciudad Real</span>
+          <span>Granja · Hípica · Campamentos</span>
         </a>
 
         <nav aria-label="Navegación principal" className={styles.desktopNav}>

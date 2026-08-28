@@ -114,7 +114,7 @@ export function HeaderMobileMenu({ links }: HeaderMobileMenuProps) {
             </a>
           </nav>
           <p className={styles.mobileMenuMeta}>
-            Ciudad Real · experiencias todo el año · desde 1990
+            Granja · Hípica · Campamentos · Ciudad Real
           </p>
         </div>,
         document.body,

@@ -1,15 +1,21 @@
 :root {
-  --color-forest: #102c27;
-  --color-pine: #355d4c;
-  --color-moss: #a8b58b;
-  --color-orange: #f07b36;
-  --color-orange-on-light: #aa4514;
-  --color-sand: #f3e9d4;
-  --color-sky: #dce9e6;
-  --color-ink: #16201e;
-  --color-white: #fffdf8;
+  --color-chalk: #fbfaf5;
+  --color-olive: #7b8042;
+  --color-forest: #183b2b;
+  --color-pine: #0d2a20;
+  --color-clay: #c7643d;
+  --color-straw: #e8dfca;
+  --color-ink: #223129;
+  --color-white: #ffffff;
   --content-max: 86rem;
   --page-gutter: clamp(1.1rem, 4vw, 4.5rem);
+  /* Compatibility aliases while later sections migrate to the rural palette. */
+  --color-moss: var(--color-olive);
+  --color-orange: var(--color-clay);
+  --color-orange-on-light: var(--color-forest);
+  --color-sand: var(--color-straw);
+  --color-sky: var(--color-chalk);
+  --font-mono: var(--font-body);
 }
 
 * {
@@ -23,7 +29,7 @@ html {
 }
 
 body {
-  background: var(--color-sand);
+  background: var(--color-chalk);
   color: var(--color-ink);
   font-family: var(--font-body), sans-serif;
   margin: 0;
@@ -47,18 +53,18 @@ button {
 a:focus-visible,
 button:focus-visible,
 summary:focus-visible {
-  outline: 3px solid var(--color-orange);
+  outline: 3px solid var(--color-clay);
   outline-offset: 4px;
 }
 
 ::selection {
-  background: var(--color-orange);
-  color: var(--color-ink);
+  background: var(--color-straw);
+  color: var(--color-forest);
 }
 
 .skip-link {
-  background: var(--color-orange);
-  color: var(--color-ink);
+  background: var(--color-forest);
+  color: var(--color-white);
   font-weight: 700;
   left: 1rem;
   padding: 0.8rem 1rem;
