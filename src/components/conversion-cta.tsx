@@ -24,7 +24,8 @@ export function ConversionCta() {
           <div className={styles.copy}>
             <p>El siguiente paso es una conversación</p>
             <h2 id="closing-title">
-              Tu próxima historia en Orea <span>empieza aquí.</span>
+              ¿Granja, hípica o campamento?{" "}
+              <span>Cuéntanos qué estás buscando.</span>
             </h2>
             <p>
               Cuéntanos si sois una familia, un colegio, un grupo o si buscas
@@ -57,7 +58,7 @@ export function ConversionCta() {
               className={styles.photoImage}
               fill
               sizes="(max-width: 760px) 100vw, 48vw"
-              quality={82}
+              quality={75}
               src="/images/orea/stock-celebration.jpg"
             />
             <figcaption>
@@ -67,56 +68,6 @@ export function ConversionCta() {
           </figure>
         </div>
       </section>
-
-      <footer className={styles.footer} data-site-footer>
-        <div className={styles.footerGrid}>
-          <div className={styles.footerBrand}>
-            <span>OREA</span>
-            <strong>Naturaleza · aprendizaje · convivencia</strong>
-          </div>
-          <address>
-            {organization.address.street}
-            <br />
-            {organization.address.locality} · {organization.address.region}
-            <br />
-            <a href={`mailto:${organization.email}`}>{organization.email}</a>
-          </address>
-          <nav aria-label="Redes sociales">
-            {Object.entries(organization.social).map(([name, href]) => (
-              <a href={href} key={name} rel="noreferrer" target="_blank">
-                {name}
-                <span aria-hidden="true">↗</span>
-              </a>
-            ))}
-          </nav>
-        </div>
-        <div className={styles.legal}>
-          <span>© {siteContent.season.year} {organization.legalName}</span>
-          <div>
-            <a
-              href="https://www.granjaorea.com/Web/contenido/aviso-legal"
-              rel="noreferrer"
-              target="_blank"
-            >
-              Aviso legal
-            </a>
-            <a
-              href="https://www.granjaorea.com/Web/contenido/politica-de-privacidad-y-proteccion-de-datos"
-              rel="noreferrer"
-              target="_blank"
-            >
-              Privacidad
-            </a>
-            <a
-              href="https://www.granjaorea.com/Web/contenido/politica-de-cookies"
-              rel="noreferrer"
-              target="_blank"
-            >
-              Cookies
-            </a>
-          </div>
-        </div>
-      </footer>
 
       <MobileStickyCta href={closingWhatsAppUrl} />
     </>

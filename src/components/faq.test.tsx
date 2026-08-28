@@ -15,3 +15,10 @@ it("uses a native disclosure that works without JavaScript", () => {
   expect(screen.getByText(/visitas familiares se organizan con cita previa/i)).toBeInTheDocument();
   expect(screen.queryByText(/sábados y domingos por la mañana/i)).not.toBeInTheDocument();
 });
+
+it("keeps questions free of decorative numeric indexes", () => {
+  render(<Faq />);
+
+  expect(screen.queryByText("01")).not.toBeInTheDocument();
+  expect(screen.getAllByRole("group")).toHaveLength(7);
+});

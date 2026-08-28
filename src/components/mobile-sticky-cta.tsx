@@ -21,6 +21,7 @@ export function MobileStickyCta({ href }: MobileStickyCtaProps) {
       "#temporada",
       "#ubicacion",
       "#preguntas",
+      "#contacto",
       "[data-site-footer]",
     ]
       .map((selector) => document.querySelector(selector))

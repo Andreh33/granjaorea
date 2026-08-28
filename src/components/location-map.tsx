@@ -50,10 +50,6 @@ export function LocationMap() {
             src={mapEmbedUrl}
             title="Mapa de Granja Escuela Orea en Ciudad Real"
           />
-          <div aria-hidden="true" className={styles.mapLabel}>
-            <span>38.98° N</span>
-            <strong>La Atalaya</strong>
-          </div>
         </div>
       </div>
     </section>

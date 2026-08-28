@@ -1,6 +1,5 @@
 import { siteContent } from "@/content/site-content";
 
-import { FaqAccordion } from "./faq-accordion";
 import styles from "./faq.module.css";
 
 export function Faq() {
@@ -13,16 +12,26 @@ export function Faq() {
       <div className={styles.shell}>
         <header className={styles.intro}>
           <p>Antes de venir a Orea</p>
-          <h2 id="faq-title">
-            Venir con las ideas <span>claras.</span>
-          </h2>
+          <h2 id="faq-title">Venir con las ideas claras.</h2>
           <p>
             Visitas, grupos, celebraciones y verano: aquí resolvemos lo
             esencial. Si falta algo, por WhatsApp contesta una persona del
             equipo Orea.
           </p>
         </header>
-        <FaqAccordion items={siteContent.faq} />
+        <div className={styles.list}>
+          {siteContent.faq.map((item) => (
+            <details className={styles.item} key={item.id}>
+              <summary>
+                <span>{item.question}</span>
+                <span aria-hidden="true" className={styles.icon} />
+              </summary>
+              <div className={styles.panel}>
+                <p>{item.answer}</p>
+              </div>
+            </details>
+          ))}
+        </div>
       </div>
     </section>
   );
