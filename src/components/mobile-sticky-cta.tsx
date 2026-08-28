@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-import { campSeason } from "@/content/camp-config";
-
 import styles from "./conversion-cta.module.css";
 
 interface MobileStickyCtaProps {
@@ -53,7 +51,7 @@ export function MobileStickyCta({ href }: MobileStickyCtaProps) {
       className={`${styles.sticky} ${isVisible ? styles.stickyVisible : ""}`}
     >
       <a href={href} rel="noreferrer" tabIndex={isVisible ? 0 : -1} target="_blank">
-        Consultar temporada {campSeason.year}
+        Hablar con Orea
         <span aria-hidden="true">↗</span>
       </a>
     </div>

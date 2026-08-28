@@ -11,22 +11,24 @@ export function CareSection() {
     >
       <div className={styles.shell}>
         <header className={styles.intro}>
-          <p className={styles.eyebrow}>La parte que más importa a las familias</p>
+          <p className={styles.eyebrow}>Lo que no cambia aunque cambie el plan</p>
           <h2 id="care-title">
-            La aventura crece cuando <span>todo lo importante</span> está cuidado.
+            Una experiencia bien cuidada <span>empieza mucho antes</span> de
+            llegar.
           </h2>
         </header>
 
         <aside className={styles.scenario}>
           <span aria-hidden="true" className={styles.scenarioIndex}>
-            Caso real
+            Un plan hecho a medida
           </span>
-          <h3>¿Y si echa de menos casa?</h3>
+          <h3>Primero escuchamos. Después proponemos.</h3>
           <p>
-            Es habitual, sobre todo al principio. El equipo acompaña, ayuda a
-            entrar en el grupo y contacta con la familia cuando la situación lo
-            requiere.
+            Una familia, un colegio y un campamento no necesitan lo mismo.
+            Cuéntanos quién viene y qué busca; el equipo de Orea te ayudará a
+            dar forma a la experiencia.
           </p>
+          <a href="#contacto">Hablar con el equipo <span aria-hidden="true">↗</span></a>
         </aside>
 
         <ul className={styles.facts}>

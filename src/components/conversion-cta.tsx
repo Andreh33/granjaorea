@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-import { campSeason } from "@/content/camp-config";
 import { siteContent } from "@/content/site-content";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
@@ -8,7 +7,7 @@ import { MobileStickyCta } from "./mobile-sticky-cta";
 import styles from "./conversion-cta.module.css";
 
 const closingWhatsAppUrl = buildWhatsAppUrl(
-  `Hola, quiero hablar con el equipo sobre Orea Camp ${campSeason.year}.`,
+  "Hola, quiero preparar una experiencia en Granja Escuela Orea.",
 );
 
 export function ConversionCta() {
@@ -16,16 +15,21 @@ export function ConversionCta() {
 
   return (
     <>
-      <section aria-labelledby="closing-title" className={styles.closing}>
+      <section
+        aria-labelledby="closing-title"
+        className={styles.closing}
+        id="contacto"
+      >
         <div className={styles.closingGrid}>
           <div className={styles.copy}>
             <p>El siguiente paso es una conversación</p>
             <h2 id="closing-title">
-              Hablemos de su <span>próximo verano.</span>
+              Tu próxima historia en Orea <span>empieza aquí.</span>
             </h2>
             <p>
-              Cuéntanos la edad, lo que le entusiasma y cualquier duda. Te
-              responderá una persona del equipo Orea, sin compromiso.
+              Cuéntanos si sois una familia, un colegio, un grupo o si buscas
+              campamento. Te responderá una persona del equipo Orea, sin
+              formularios interminables.
             </p>
             <div className={styles.actions}>
               <a
@@ -49,15 +53,16 @@ export function ConversionCta() {
 
           <figure className={styles.photo}>
             <Image
-              alt="Gran grupo de participantes y equipo reunido en las instalaciones de Orea"
+              alt="Niños compartiendo un juego al aire libre"
               className={styles.photoImage}
               fill
               sizes="(max-width: 760px) 100vw, 48vw"
-              src="/images/orea/final-group.jpg"
+              quality={82}
+              src="/images/orea/stock-celebration.jpg"
             />
             <figcaption>
-              <span>Muchas historias</span>
-              <strong>Un verano que se comparte</strong>
+              <span>Muchas historias · un mismo lugar</span>
+              <strong>Orea se vive todo el año</strong>
             </figcaption>
           </figure>
         </div>
@@ -66,8 +71,8 @@ export function ConversionCta() {
       <footer className={styles.footer} data-site-footer>
         <div className={styles.footerGrid}>
           <div className={styles.footerBrand}>
-            <span>Orea Camp</span>
-            <strong>Verano · naturaleza · convivencia</strong>
+            <span>OREA</span>
+            <strong>Naturaleza · aprendizaje · convivencia</strong>
           </div>
           <address>
             {organization.address.street}

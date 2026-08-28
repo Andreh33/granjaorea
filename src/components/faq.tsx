@@ -12,13 +12,14 @@ export function Faq() {
     >
       <div className={styles.shell}>
         <header className={styles.intro}>
-          <p>Antes de hacer la mochila</p>
+          <p>Antes de venir a Orea</p>
           <h2 id="faq-title">
-            Preguntar también es <span>cuidar.</span>
+            Venir con las ideas <span>claras.</span>
           </h2>
           <p>
-            Respuestas claras para decidir con calma. Si falta algo, al otro
-            lado de WhatsApp contesta una persona del equipo Orea.
+            Visitas, grupos, celebraciones y verano: aquí resolvemos lo
+            esencial. Si falta algo, por WhatsApp contesta una persona del
+            equipo Orea.
           </p>
         </header>
         <FaqAccordion items={siteContent.faq} />

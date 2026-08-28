@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 import { campSeason } from "@/content/camp-config";
 
 export const runtime = "nodejs";
-export const alt = "Orea Camp, campamento de verano en Ciudad Real";
+export const alt = "Granja Escuela Orea, naturaleza todo el año en Ciudad Real";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -54,7 +54,7 @@ export default function OpenGraphImage() {
               width: 20,
             }}
           />
-          Orea Camp · Temporada {campSeason.year}
+          Granja Escuela Orea · Ciudad Real
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <div
@@ -67,7 +67,7 @@ export default function OpenGraphImage() {
               maxWidth: 930,
             }}
           >
-            El verano en el que empiezan a volver distintos
+            Naturaleza para vivirla. Todo el año.
           </div>
           <div
             style={{
@@ -77,7 +77,7 @@ export default function OpenGraphImage() {
               fontWeight: 600,
             }}
           >
-            Naturaleza y aventura · 6 a 16 años · Ciudad Real
+            Familias · colegios · grupos · verano {campSeason.year}
           </div>
         </div>
       </div>

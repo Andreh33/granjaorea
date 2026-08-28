@@ -13,19 +13,18 @@ describe("SEO builders", () => {
     expect(metadata.alternates?.canonical).toBe(
       "https://campamentos.granjaorea.com/",
     );
-    expect(String(metadata.title)).toMatch(
-      /Campamento de verano.*Ciudad Real/i,
+    expect(String(metadata.title)).toBe(
+      "Granja escuela y campamentos en Ciudad Real | Orea",
     );
-    expect(metadata.description).toMatch(/6 a 16 años/i);
-    expect(metadata.description).toMatch(/1 al 30 de julio/i);
-    expect(metadata.description).toMatch(/630 €|690 €/i);
+    expect(metadata.description).toMatch(/todo el año/i);
+    expect(metadata.description).toMatch(/familias.*colegios.*campamento/i);
   });
 
   it("mirrors every visible FAQ entry into valid FAQPage JSON-LD", () => {
     const data = buildFaqJsonLd();
 
     expect(data["@type"]).toBe("FAQPage");
-    expect(data.mainEntity).toHaveLength(8);
+    expect(data.mainEntity).toHaveLength(7);
   });
 
   it("identifies Orea without inventing an offer", () => {

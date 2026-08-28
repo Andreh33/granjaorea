@@ -1,21 +1,26 @@
 import { campSeason, oreaLocation, type CampSeason } from "./camp-config";
 
-export interface TimelineItem {
-  readonly id: string;
-  readonly time: string;
-  readonly title: string;
-  readonly description: string;
-  readonly phase: "morning" | "midday" | "afternoon" | "evening";
-}
-
-export interface Activity {
-  readonly id: string;
+export interface Experience {
+  readonly id: "familias" | "colegios" | "celebraciones" | "verano";
+  readonly number: string;
   readonly eyebrow: string;
   readonly title: string;
   readonly description: string;
+  readonly detail: string;
   readonly image: string;
   readonly imageAlt: string;
   readonly focalPoint: string;
+  readonly href: string;
+  readonly linkLabel: string;
+  readonly tone: "lime" | "orange" | "blue" | "violet";
+}
+
+export interface GalleryImage {
+  readonly id: string;
+  readonly src: string;
+  readonly alt: string;
+  readonly caption: string;
+  readonly sizes: string;
 }
 
 export interface CareFact {
@@ -71,8 +76,8 @@ export interface SiteContent {
     }[];
   };
   readonly season: CampSeason;
-  readonly timeline: readonly TimelineItem[];
-  readonly activities: readonly Activity[];
+  readonly experiences: readonly Experience[];
+  readonly gallery: readonly GalleryImage[];
   readonly care: readonly CareFact[];
   readonly testimonials: readonly Testimonial[];
   readonly faq: readonly FaqItem[];
@@ -80,7 +85,7 @@ export interface SiteContent {
 
 export const siteContent = {
   organization: {
-    name: "Orea Camp",
+    name: "Granja Escuela Orea",
     legalName: "Servicios Integrales Ciudad Real S.L.",
     url: "https://campamentos.granjaorea.com",
     email: "granjaorea@hotmail.com",
@@ -94,214 +99,120 @@ export const siteContent = {
     },
   },
   navigation: [
-    { label: "La experiencia", href: "#experiencia" },
-    { label: "Actividades", href: "#actividades" },
-    { label: "Cómo cuidamos", href: "#cuidados" },
-    { label: "Preguntas", href: "#preguntas" },
+    { label: "Experiencias", href: "#experiencias" },
+    { label: "Galería", href: "#instalaciones" },
+    { label: "Campamento", href: "#temporada" },
+    { label: "Ubicación", href: "#ubicacion" },
   ],
   hero: {
-    eyebrow: "Campamento de verano en Ciudad Real · 6 a 16 años",
-    title: "El verano en el que empiezan a volver distintos",
+    eyebrow: "Granja escuela en Ciudad Real · Todo el año",
+    title: "Naturaleza para vivirla. Todo el año.",
     description:
-      "Naturaleza, aventura y convivencia en La Atalaya, con un equipo que lleva más de 35 años acompañando sus grandes primeras veces.",
+      "Familias, colegios, grupos y campamentos encuentran en Orea un lugar donde salir de la rutina, convivir y volver a mirar la naturaleza de cerca.",
     facts: [
-      { value: "35+", label: "años creando campamentos" },
-      { value: "6–16", label: "años, en grupos por edad" },
+      { value: "35+", label: "años creando experiencias" },
       { value: "80+", label: "especies en la granja" },
+      { value: "365", label: "días para volver al campo" },
     ],
   },
   season: campSeason,
-  timeline: [
+  experiences: [
     {
-      id: "despertar",
-      time: "08:30",
-      title: "Despertar en el bosque",
+      id: "familias",
+      number: "01",
+      eyebrow: "Fines de semana con cita previa",
+      title: "Visitas en familia",
       description:
-        "El día empieza sin prisas: aseo, habitaciones y primeros reencuentros del grupo.",
-      phase: "morning",
+        "Un plan para grandes y pequeños: conocer los animales, respirar campo y compartir una mañana diferente muy cerca de Ciudad Real.",
+      detail: "Sábados y domingos por la mañana",
+      image: "/images/orea/stock-farm.jpg",
+      imageAlt: "Niño sosteniendo con cuidado una cría de cabra en el campo",
+      focalPoint: "50% 52%",
+      href: "#contacto",
+      linkLabel: "Preparar la visita",
+      tone: "lime",
     },
     {
-      id: "desayuno",
-      time: "09:00",
-      title: "Desayuno",
+      id: "colegios",
+      number: "02",
+      eyebrow: "Aprender fuera del aula",
+      title: "Colegios y grupos",
       description:
-        "Energía para la mañana y un momento para organizar juntos todo lo que viene.",
-      phase: "morning",
+        "Visitas y convivencias que se plantean según la edad, los objetivos y el tiempo disponible de cada centro o colectivo.",
+      detail: "Programas adaptados a cada grupo",
+      image: "/images/orea/stock-hero.jpg",
+      imageAlt: "Grupo de niños participando en una jornada de cuidado del bosque",
+      focalPoint: "68% 50%",
+      href: "#contacto",
+      linkLabel: "Consultar para un grupo",
+      tone: "blue",
     },
     {
-      id: "primer-bloque",
-      time: "09:30",
-      title: "Primera aventura",
+      id: "celebraciones",
+      number: "03",
+      eyebrow: "Un cumpleaños fuera de serie",
+      title: "Celebraciones",
       description:
-        "Actividades rotativas e inglés práctico: se aprende haciendo, hablando y colaborando.",
-      phase: "morning",
+        "Una forma distinta de celebrar, rodeados de naturaleza y con propuestas preparadas para que el grupo viva el día de verdad.",
+      detail: "Formato y actividades a confirmar",
+      image: "/images/orea/stock-celebration.jpg",
+      imageAlt: "Niños y adultos compartiendo un juego al aire libre con globos",
+      focalPoint: "50% 48%",
+      href: "#contacto",
+      linkLabel: "Imaginar la celebración",
+      tone: "orange",
     },
     {
-      id: "almuerzo",
-      time: "11:10",
-      title: "Almuerzo",
-      description: "Una pausa breve para reponer fuerzas y volver al grupo.",
-      phase: "morning",
-    },
-    {
-      id: "segundo-bloque",
-      time: "11:25",
-      title: "Segunda expedición",
+      id: "verano",
+      number: "04",
+      eyebrow: `Julio ${campSeason.year} · 6 a 16 años`,
+      title: "Campamento de verano",
       description:
-        "Granja, multiaventura, hípica o naturaleza según la programación de cada grupo.",
-      phase: "morning",
-    },
-    {
-      id: "piscina-mediodia",
-      time: "13:05",
-      title: "Piscina y deporte",
-      description:
-        "Movimiento, agua y juego antes de sentarnos a comer.",
-      phase: "midday",
-    },
-    {
-      id: "comida",
-      time: "14:00",
-      title: "Comida y sobremesa",
-      description:
-        "Comida casera, conversación y un ritmo más tranquilo en las horas centrales.",
-      phase: "midday",
-    },
-    {
-      id: "talleres",
-      time: "15:20",
-      title: "Talleres",
-      description:
-        "Creatividad, expresión y pequeños proyectos para descubrir otras habilidades.",
-      phase: "afternoon",
-    },
-    {
-      id: "piscina-tarde",
-      time: "17:00",
-      title: "Piscina y deportes",
-      description:
-        "La tarde vuelve a activarse con juegos de agua y propuestas deportivas.",
-      phase: "afternoon",
-    },
-    {
-      id: "merienda",
-      time: "17:40",
-      title: "Merienda",
-      description: "Un descanso corto antes del último reto del día.",
-      phase: "afternoon",
-    },
-    {
-      id: "ultimo-bloque",
-      time: "18:00",
-      title: "El último reto",
-      description:
-        "Una actividad más para cerrar la tarde aprendiendo a decidir y participar en equipo.",
-      phase: "afternoon",
-    },
-    {
-      id: "duchas",
-      time: "19:15",
-      title: "Duchas y tiempo de grupo",
-      description:
-        "Rutinas cotidianas, autonomía y un momento para compartir cómo ha ido el día.",
-      phase: "evening",
-    },
-    {
-      id: "cena",
-      time: "20:45",
-      title: "Cena",
-      description: "Nos sentamos juntos antes de que empiece la noche.",
-      phase: "evening",
-    },
-    {
-      id: "velada",
-      time: "22:15",
-      title: "La gran velada",
-      description:
-        "Juegos, historias y recuerdos compartidos para terminar el día con el grupo.",
-      phase: "evening",
+        "Días para hacer amigos, ganar autonomía y vivir el campo sin pantallas en una experiencia que se recuerda mucho después de volver a casa.",
+      detail: "Dos quincenas con precios confirmados",
+      image: "/images/orea/stock-trail.jpg",
+      imageAlt: "Dos niños caminando juntos por un sendero rodeado de vegetación",
+      focalPoint: "62% 50%",
+      href: "#temporada",
+      linkLabel: "Calcular el campamento",
+      tone: "violet",
     },
   ],
-  activities: [
+  gallery: [
+    {
+      id: "explorar",
+      src: "/images/orea/stock-trail.jpg",
+      alt: "Dos niños explorando juntos un sendero en el bosque",
+      caption: "Explorar con los cinco sentidos",
+      sizes: "(max-width: 760px) 100vw, 62vw",
+    },
     {
       id: "granja",
-      eyebrow: "Aprender cuidando",
-      title: "Granja y más de 80 especies",
-      description:
-        "Una relación directa con los animales para entender sus cuidados, sus ritmos y el respeto por lo vivo.",
-      image: "/images/orea/activity-farm.jpg",
-      imageAlt: "Pavos reales en la zona de animales de Granja Escuela Orea",
-      focalPoint: "50% 45%",
+      src: "/images/orea/stock-farm.jpg",
+      alt: "Niño interactuando con una cría de cabra en una zona verde",
+      caption: "Aprender a cuidar lo vivo",
+      sizes: "(max-width: 760px) 100vw, 36vw",
     },
     {
-      id: "multiaventura",
-      eyebrow: "Superarse con seguridad",
-      title: "Multiaventura",
-      description:
-        "Parque aéreo, escalada y tirolina dentro de las instalaciones, adaptados a la edad y al grupo.",
-      image: "/images/orea/activity-adventure.jpg",
-      imageAlt: "Participante cruzando el parque aéreo de Orea",
-      focalPoint: "50% 40%",
+      id: "caballos",
+      src: "/images/orea/stock-horse.jpg",
+      alt: "Niña con casco montando a caballo delante de un establo",
+      caption: "Descubrir el mundo del caballo",
+      sizes: "(max-width: 760px) 100vw, 35vw",
     },
     {
-      id: "hipica",
-      eyebrow: "Confianza paso a paso",
-      title: "Hípica adaptada",
-      description:
-        "Primer contacto, clases y rutas estructuradas según la experiencia de cada participante.",
-      image: "/images/orea/activity-horses.jpg",
-      imageAlt: "Grupo de participantes en una sesión de hípica en Orea",
-      focalPoint: "50% 50%",
+      id: "aventura",
+      src: "/images/orea/stock-adventure.jpg",
+      alt: "Niño avanzando entre rocas y flores durante una exploración",
+      caption: "Retos que hacen crecer",
+      sizes: "(max-width: 760px) 100vw, 35vw",
     },
     {
-      id: "piscina",
-      eyebrow: "Verano en movimiento",
-      title: "Piscina y juegos de agua",
-      description:
-        "Momentos refrescantes que combinan juego, convivencia y supervisión del equipo.",
-      image: "/images/orea/activity-pool.jpg",
-      imageAlt: "Grupo durante una actividad junto a la piscina de Orea",
-      focalPoint: "50% 50%",
-    },
-    {
-      id: "ingles",
-      eyebrow: "Hablar sin darse cuenta",
-      title: "Inglés en contexto",
-      description:
-        "Dinámicas prácticas integradas en la jornada para perder el miedo a comunicarse.",
-      image: "/images/orea/activity-english.jpg",
-      imageAlt: "Grupo de jóvenes sentado en círculo durante una dinámica en Orea",
-      focalPoint: "50% 50%",
-    },
-    {
-      id: "talleres",
-      eyebrow: "Crear con las manos",
-      title: "Talleres y expresión",
-      description:
-        "Propuestas creativas para imaginar, construir y descubrir talentos fuera de la rutina.",
-      image: "/images/orea/activity-workshop.jpg",
-      imageAlt: "Participantes durante una actividad colectiva al aire libre en Orea",
-      focalPoint: "50% 50%",
-    },
-    {
-      id: "deportes",
-      eyebrow: "Jugar para cooperar",
-      title: "Deportes y grandes juegos",
-      description:
-        "Retos colectivos en los que importa participar, probar y aprender a contar con los demás.",
-      image: "/images/orea/activity-sports.jpg",
-      imageAlt: "Participantes jugando al tenis en las pistas deportivas de Orea",
-      focalPoint: "50% 50%",
-    },
-    {
-      id: "veladas",
-      eyebrow: "Cuando cae el sol",
-      title: "Veladas que hacen grupo",
-      description:
-        "Juegos nocturnos, historias y momentos compartidos que terminan convirtiéndose en recuerdos.",
-      image: "/images/orea/activity-evening.jpg",
-      imageAlt: "Grupo participando en una actividad festiva de interior en Orea",
-      focalPoint: "50% 50%",
+      id: "juego",
+      src: "/images/orea/stock-group.jpg",
+      alt: "Grupo de niños concentrado en un juego al aire libre",
+      caption: "Compartir, descubrir, pertenecer",
+      sizes: "(max-width: 760px) 100vw, 28vw",
     },
   ],
   care: [
@@ -309,108 +220,90 @@ export const siteContent = {
       id: "experience",
       title: "Más de 35 años de experiencia",
       description:
-        "Orea organiza campamentos desde 1990 y aplica ese aprendizaje a cada rutina del día.",
+        "Orea acompaña a niños, jóvenes, familias y grupos desde 1990, aprendiendo con cada nueva experiencia.",
     },
     {
       id: "team",
       title: "Equipo titulado y presente",
       description:
-        "Los grupos cuentan con supervisión continuada y monitores preparados para su actividad.",
+        "Las propuestas dirigidas cuentan con monitores preparados y un acompañamiento adaptado al grupo.",
     },
     {
-      id: "groups",
-      title: "Grupos de 10 a 15 por edad",
+      id: "tailored",
+      title: "Cada visita tiene su forma",
       description:
-        "La organización por etapas favorece la convivencia, el acompañamiento y retos adecuados.",
-    },
-    {
-      id: "health",
-      title: "Información médica antes de empezar",
-      description:
-        "Recogemos antecedentes y pautas; cualquier medicación se entrega identificada y una incidencia se comunica a la familia.",
-    },
-    {
-      id: "families",
-      title: "Comunicación con las familias",
-      description:
-        "Se facilitan teléfonos y horarios de contacto, y el equipo está disponible ante cualquier situación importante.",
+        "La edad, el tamaño del grupo, la estación y el objetivo definen la propuesta; por eso la cerramos contigo.",
     },
     {
       id: "facilities",
-      title: "Aventura dentro de Orea",
+      title: "Todo sucede dentro de Orea",
       description:
-        "Parque aéreo, escalada, tirolina, hípica y piscina forman parte de las propias instalaciones.",
+        "Granja, espacios naturales, alojamiento y zonas de actividad conviven en el mismo recinto de La Atalaya.",
     },
   ],
   testimonials: [
     {
       id: "maria",
       quote:
-        "Mi hija salía de casa tantos días por primera vez y volvió encantada. Destaco la profesionalidad de los monitores y la tranquilidad de saber que había atención médica a diez minutos. Repetimos seguro.",
+        "Mi hija salía de casa tantos días por primera vez y volvió encantada. Destaco la profesionalidad de los monitores y la tranquilidad con la que vivimos la experiencia.",
       name: "María J.",
-      context: "Madre de una participante de 10 años · testimonio compartido con Orea",
+      context: "Madre de una participante · testimonio compartido con Orea",
     },
     {
       id: "carlos",
       quote:
-        "Los niños no paran en todo el día y la política de no usar el móvil les viene genial para desconectar de verdad. Una experiencia de diez.",
+        "Los niños no paran y la desconexión del móvil les viene genial. Volvió hablando de amigos, animales y retos que pensaba que no podía superar.",
       name: "Carlos R.",
-      context: "Padre de un participante de 14 años · testimonio compartido con Orea",
+      context: "Padre de un participante · testimonio compartido con Orea",
     },
     {
       id: "elena",
       quote:
-        "Llevamos confiando en Orea Camp tres años seguidos. La comida es casera y se nota la experiencia de tantos años organizando esto.",
+        "Llevamos confiando en Orea tres años seguidos. Se nota la experiencia y el cariño con el que el equipo acompaña al grupo.",
       name: "Elena F.",
       context: "Madre de dos participantes · testimonio compartido con Orea",
     },
   ],
   faq: [
     {
-      id: "ages",
-      question: "¿Para qué edades está pensado Orea Camp?",
+      id: "family-visits",
+      question: "¿Cuándo se puede visitar Orea en familia?",
       answer:
-        "El campamento está dirigido a niños y jóvenes de 6 a 16 años. La convivencia y las actividades se organizan por grupos de edad para adaptar el acompañamiento y los retos.",
+        "Las visitas familiares se organizan con cita previa los sábados y domingos por la mañana. Escríbenos por WhatsApp para confirmar fecha, horario y propuesta antes de desplazarte.",
     },
     {
-      id: "homesickness",
-      question: "¿Qué ocurre si echa de menos casa?",
+      id: "schools",
+      question: "¿Preparáis visitas para colegios y otros grupos?",
       answer:
-        "Es habitual, sobre todo durante los primeros días. El equipo acompaña de cerca a cada participante, facilita su integración en el grupo y contacta con la familia cuando la situación lo requiere.",
+        "Sí. Orea organiza visitas y convivencias para centros educativos y colectivos. La duración y el programa se plantean según la edad, el tamaño del grupo y sus objetivos.",
+    },
+    {
+      id: "celebrations",
+      question: "¿Se pueden celebrar cumpleaños en la granja escuela?",
+      answer:
+        "Sí. El formato, la fecha y las propuestas dependen del grupo y de la disponibilidad. Cuéntanos la edad y el número aproximado de asistentes para preparar una opción adecuada.",
+    },
+    {
+      id: "ages",
+      question: "¿Para qué edades está pensado el campamento de verano?",
+      answer:
+        "El campamento de verano está dirigido a niños y jóvenes de 6 a 16 años. La convivencia y las propuestas se organizan por etapas para adaptar el acompañamiento y los retos.",
     },
     {
       id: "transport",
-      question: "¿Hay transporte desde Madrid?",
-      answer: `El transporte desde Madrid no está confirmado para la temporada ${campSeason.year}. Consulta al equipo Orea antes de organizar el viaje; si se activa, te facilitarán los horarios, el punto de salida y las condiciones.`,
-    },
-    {
-      id: "phones",
-      question: "¿Pueden llevar teléfono móvil o dinero?",
-      answer:
-        "El móvil se permite con uso restringido a horarios concretos para favorecer la desconexión. El dinero se puede custodiar mediante el sistema interno del campamento para evitar pérdidas.",
-    },
-    {
-      id: "rooms",
-      question: "¿Cómo se organizan los grupos y las habitaciones?",
-      answer:
-        "Los grupos reúnen habitualmente de 10 a 15 participantes por edades, con supervisión continuada. El alojamiento se realiza en habitaciones compartidas con baño privado.",
-    },
-    {
-      id: "family-contact",
-      question: "¿Cómo podemos comunicarnos durante el campamento?",
-      answer:
-        "Antes del comienzo se facilitan los teléfonos del equipo y los horarios previstos para llamadas. También podéis contactar ante cualquier situación importante.",
+      question: `¿Hay transporte para el campamento de ${campSeason.year}?`,
+      answer: `El transporte no está confirmado para la temporada ${campSeason.year}. Consulta al equipo Orea antes de organizar el viaje; si se activa alguna opción, te facilitarán punto de salida, horarios y condiciones.`,
     },
     {
       id: "medical",
-      question: "¿Cómo se gestiona una necesidad médica?",
+      question: "¿Cómo se gestiona una necesidad médica en el campamento?",
       answer:
-        "Antes del campamento se recoge la información médica relevante. La medicación debe entregarse identificada con nombre y pauta; ante una incidencia, el equipo contacta inmediatamente con la familia.",
+        "Antes del campamento se recoge la información médica relevante. La medicación debe entregarse identificada con nombre y pauta; ante una incidencia, el equipo contacta con la familia.",
     },
     {
       id: "dates-prices",
-      question: `¿Cuáles son los turnos y precios de ${campSeason.year}?`,
-      answer: `${campSeason.sessions[0].label}, del ${campSeason.sessions[0].dateRange}: ${campSeason.sessions[0].priceEur} € por participante. ${campSeason.sessions[1].label}, del ${campSeason.sessions[1].dateRange}: ${campSeason.sessions[1].priceEur} €. Puedes preparar tu consulta con la calculadora y el equipo confirmará por WhatsApp la disponibilidad y las condiciones.`,
+      question: `¿Cuáles son los turnos y precios del verano ${campSeason.year}?`,
+      answer: `${campSeason.sessions[0].label}, del ${campSeason.sessions[0].dateRange}: ${campSeason.sessions[0].priceEur} € por participante. ${campSeason.sessions[1].label}, del ${campSeason.sessions[1].dateRange}: ${campSeason.sessions[1].priceEur} €. La calculadora prepara tu consulta y el equipo confirma por WhatsApp disponibilidad y condiciones.`,
     },
   ],
 } as const satisfies SiteContent;

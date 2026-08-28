@@ -13,9 +13,11 @@ it("opens an accessible Spanish menu with real section links", () => {
   expect(
     screen.getByRole("dialog", { name: /menú principal/i }),
   ).toBeInTheDocument();
+  expect(screen.getByRole("dialog").parentElement).toBe(document.body);
   expect(
-    screen.getAllByRole("link", { name: /la experiencia/i }).at(-1),
-  ).toHaveAttribute("href", "#experiencia");
+    screen.getAllByRole("link", { name: /^experiencias$/i }).at(-1),
+  ).toHaveAttribute("href", "#experiencias");
+  expect(screen.getAllByText("OREA").length).toBeGreaterThan(0);
 });
 
 it("closes the menu with Escape and returns focus to its trigger", () => {

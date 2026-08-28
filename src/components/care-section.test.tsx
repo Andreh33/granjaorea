@@ -5,13 +5,14 @@ import { Testimonials } from "./page-sections";
 import { CareSection } from "./care-section";
 
 describe("CareSection", () => {
-  it("keeps all six care facts visible without interaction", () => {
+  it("keeps the four year-round care principles visible without interaction", () => {
     render(<CareSection />);
 
     expect(
-      screen.getByRole("heading", { name: /todo lo importante/i }),
+      screen.getByRole("heading", { name: /experiencia bien cuidada/i }),
     ).toBeInTheDocument();
-    expect(screen.getAllByRole("listitem")).toHaveLength(6);
+    expect(screen.getAllByRole("listitem")).toHaveLength(4);
+    expect(screen.queryByText(/echa de menos casa/i)).not.toBeInTheDocument();
   });
 });
 

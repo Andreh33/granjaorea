@@ -14,4 +14,7 @@ it("offers real WhatsApp and telephone paths without a fake form", () => {
     "tel:+34615367717",
   );
   expect(screen.queryByRole("form")).toBeNull();
+  expect(
+    screen.getByRole("heading", { name: /tu próxima historia en orea/i }),
+  ).toBeInTheDocument();
 });

@@ -22,10 +22,17 @@ describe("siteContent", () => {
     expect(siteContent.season.description).toMatch(/disponibilidad/i);
   });
 
-  it("contains a chronological, complete camp day", () => {
-    expect(siteContent.timeline[0].time).toBe("08:30");
-    expect(siteContent.timeline.at(-1)?.time).toBe("22:15");
-    expect(siteContent.timeline.length).toBeGreaterThanOrEqual(8);
+  it("presents Orea as a place families and groups can enjoy all year", () => {
+    expect(siteContent.hero.eyebrow).toMatch(/todo el año/i);
+    expect(siteContent.experiences.map((experience) => experience.id)).toEqual([
+      "familias",
+      "colegios",
+      "celebraciones",
+      "verano",
+    ]);
+    expect(siteContent.experiences.every((experience) => experience.imageAlt)).toBe(
+      true,
+    );
   });
 
   it("does not manufacture urgency around places", () => {

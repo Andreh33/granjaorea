@@ -22,13 +22,15 @@ test("page keeps its content contract and never overflows horizontally", async (
 
 test("FAQ works from the keyboard and exposes its answer", async ({ page }) => {
   await page.goto("/#preguntas");
-  const question = page.locator("summary", { hasText: /echa de menos/i });
+  const question = page.locator("summary", { hasText: /cuándo se puede visitar/i });
 
   await question.focus();
   await page.keyboard.press("Enter");
 
   await expect(question.locator("..")).toHaveAttribute("open", "");
-  await expect(page.getByText(/equipo acompaña de cerca/i)).toBeVisible();
+  await expect(
+    question.locator("..").getByText(/^Las visitas familiares se organizan/i),
+  ).toBeVisible();
 });
 
 test("mobile menu has a complete keyboard close flow", async ({ page }) => {
@@ -41,7 +43,7 @@ test("mobile menu has a complete keyboard close flow", async ({ page }) => {
 
   const dialog = page.getByRole("dialog", { name: /men.*principal/i });
   await expect(dialog).toBeVisible();
-  await expect(dialog.getByRole("link", { name: "La experiencia" })).toBeFocused();
+  await expect(dialog.getByRole("link", { name: "Experiencias" })).toBeFocused();
 
   await page.keyboard.press("Escape");
   await expect(dialog).toBeHidden();
@@ -54,9 +56,9 @@ test("mobile contact action disappears before colliding with interactive section
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
 
-  await page.locator("#actividades").scrollIntoViewIfNeeded();
+  await page.locator("#experiencias").scrollIntoViewIfNeeded();
   const sticky = page.locator('a[href*="wa.me"]', {
-    hasText: "Consultar temporada 2027",
+    hasText: "Hablar con Orea",
   });
   await expect(sticky).toBeVisible();
 
@@ -103,23 +105,13 @@ test("calculator prepares the selected price and family details for WhatsApp", a
   expect(conversation).toContain("630 €");
 });
 
-test("location keeps Google Maps private until the visitor requests it", async ({
+test("location shows Google Maps directly with a separate directions link", async ({
   page,
 }) => {
-  const mapRequests: string[] = [];
-  page.on("request", (request) => {
-    if (request.url().includes("google.com/maps")) {
-      mapRequests.push(request.url());
-    }
-  });
   await page.goto("/#ubicacion");
 
-  await expect(page.getByTitle(/mapa interactivo/i)).toHaveCount(0);
-  expect(mapRequests).toEqual([]);
-  await page.getByRole("button", { name: /cargar mapa interactivo/i }).click();
-
-  await expect(page.getByTitle(/mapa interactivo/i)).toBeVisible();
-  await expect(page.getByTitle(/mapa interactivo/i)).toHaveAttribute(
+  await expect(page.getByTitle(/mapa de granja escuela orea/i)).toBeVisible();
+  await expect(page.getByTitle(/mapa de granja escuela orea/i)).toHaveAttribute(
     "src",
     /google\.com\/maps.*output=embed/,
   );
@@ -128,53 +120,14 @@ test("location keeps Google Maps private until the visitor requests it", async (
   ).toHaveAttribute("target", "_blank");
 });
 
-test("the day route follows native scroll and respects reduced motion", async ({
-  browser,
-  page,
-}) => {
-  test.skip(
-    test.info().project.name !== "desktop-chromium",
-    "One Chromium engine is enough for the motion contract",
-  );
+test("year-round experience paths replace the old fixed routine", async ({ page }) => {
+  await page.goto("/#experiencias");
 
-  await page.goto("/");
-  const section = page.locator("#experiencia");
-  const sectionBox = await section.boundingBox();
-  const dialFace = page.getByTestId("daylight-dial").locator("div").nth(1);
-  expect(sectionBox).not.toBeNull();
-
-  await page.evaluate((scrollTop) => window.scrollTo(0, scrollTop), sectionBox!.y + 300);
-  await page.waitForTimeout(100);
-  const startTransform = await dialFace.evaluate(
-    (element) => getComputedStyle(element).transform,
-  );
-
-  const middleScroll = sectionBox!.y + sectionBox!.height * 0.6;
-  await page.evaluate((scrollTop) => window.scrollTo(0, scrollTop), middleScroll);
-  await page.waitForTimeout(100);
-  const middleTransform = await dialFace.evaluate(
-    (element) => getComputedStyle(element).transform,
-  );
-
-  expect(Math.abs((await page.evaluate(() => window.scrollY)) - middleScroll)).toBeLessThan(
-    2,
-  );
-  expect(middleTransform).not.toBe(startTransform);
-
-  const reducedContext = await browser.newContext({
-    baseURL: "http://127.0.0.1:4173",
-    reducedMotion: "reduce",
-    viewport: { width: 1440, height: 1000 },
-  });
-  const reducedPage = await reducedContext.newPage();
-  await reducedPage.goto("/");
-  const reducedFace = reducedPage
-    .getByTestId("daylight-dial")
-    .locator("div")
-    .nth(1);
-  await reducedFace.scrollIntoViewIfNeeded();
-  await expect(reducedFace).toHaveCSS("transform", "none");
-  await reducedContext.close();
+  await expect(page.getByRole("heading", { name: /cuatro formas de vivir orea/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /visitas en familia/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /colegios y grupos/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /celebraciones/i })).toBeVisible();
+  await expect(page.locator('time[datetime="08:30"]')).toHaveCount(0);
 });
 
 test("canonical and structured data describe the same public site", async ({
@@ -219,6 +172,7 @@ test("robots and sitemap expose the canonical production URL", async ({ request 
 test("the rendered page has no broken images, page errors, or serious axe violations", async ({
   page,
 }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
   const pageErrors: string[] = [];
   const consoleErrors: string[] = [];
   const failedResponses: string[] = [];
@@ -231,10 +185,15 @@ test("the rendered page has no broken images, page errors, or serious axe violat
     }
   });
   page.on("requestfailed", (request) => {
-    failedRequests.push(`${request.failure()?.errorText ?? "failed"} ${request.url()}`);
+    if (new URL(request.url()).origin === "http://127.0.0.1:4173") {
+      failedRequests.push(`${request.failure()?.errorText ?? "failed"} ${request.url()}`);
+    }
   });
   page.on("response", (response) => {
-    if (response.status() >= 400) {
+    if (
+      response.status() >= 400 &&
+      new URL(response.url()).origin === "http://127.0.0.1:4173"
+    ) {
       failedResponses.push(`${response.status()} ${response.url()}`);
     }
   });
@@ -276,16 +235,22 @@ test("the rendered page has no broken images, page errors, or serious axe violat
 test.describe("without JavaScript", () => {
   test.use({ javaScriptEnabled: false });
 
-  test("keeps the thesis, full day, care facts, and contact action readable", async ({
+  test("keeps the thesis, year-round paths, care facts, and contact action readable", async ({
     page,
   }) => {
     await page.goto("/");
 
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    await expect(page.locator('time[datetime="08:30"]')).toBeVisible();
+    await expect(page.getByRole("heading", { name: /visitas en familia/i })).toBeVisible();
     await expect(page.getByText(/equipo titulado y presente/i)).toBeVisible();
-    await page.locator("summary", { hasText: /para qué edades/i }).click();
-    await expect(page.getByText(/campamento está dirigido a niños y jóvenes/i)).toBeVisible();
+    const familyQuestion = page.locator("summary", {
+      hasText: /cuándo se puede visitar/i,
+    });
+    await familyQuestion.focus();
+    await page.keyboard.press("Enter");
+    await expect(
+      familyQuestion.locator("..").getByText(/^Las visitas familiares se organizan/i),
+    ).toBeVisible();
     await expect(
       page.getByRole("link", { name: /whatsapp/i }).first(),
     ).toBeVisible();

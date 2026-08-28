@@ -1,10 +1,10 @@
-# Orea Camp 2027
+# Granja Escuela Orea
 
-Rediseño completo de la web de campamentos de Orea. Está construido con Next.js 16, React 19 y TypeScript, genera una página estática optimizada y está publicado en Vercel desde el repositorio de GitHub.
+Web anual de Granja Escuela Orea: visitas familiares, colegios y grupos, celebraciones y campamento de verano. Está construida con Next.js 16, React 19 y TypeScript, se publica en Vercel y mantiene su copia de seguridad en GitHub.
 
-La campaña utiliza únicamente información comprobable. Los turnos y precios facilitados por Orea para 2027 son del 1 al 15 de julio por 690 € y del 16 al 30 de julio por 630 €, ambos por participante. La web no afirma que queden plazas: la disponibilidad y las condiciones se confirman personalmente por WhatsApp.
+La campaña de verano usa únicamente los datos confirmados para 2027: primera quincena, del 1 al 15 de julio, por 690 €; segunda quincena, del 16 al 30 de julio, por 630 €. Los importes son por participante y la disponibilidad se confirma personalmente por WhatsApp.
 
-La calculadora pide solo el nombre del responsable, un teléfono de contacto y la edad del niño o niña. Genera el mensaje en el navegador y abre WhatsApp; no almacena ni envía esos datos a un servidor. El mapa de Google también permanece desactivado hasta que la persona pulsa “Cargar mapa interactivo”.
+La calculadora solicita nombre del responsable, teléfono y edad del niño o niña. El mensaje se genera íntegramente en el navegador: la web no guarda ni envía esos datos a un servidor. El mapa visible es un iframe de Google Maps y queda sujeto a la política de privacidad de Google.
 
 ## Desarrollo local
 
@@ -15,7 +15,7 @@ npm ci
 npm run dev
 ```
 
-La aplicación queda disponible en `http://localhost:3000`. Comandos de calidad:
+Comandos de calidad:
 
 ```bash
 npm run lint
@@ -31,71 +31,53 @@ Playwright necesita Chromium la primera vez:
 npx playwright install chromium
 ```
 
-## Dónde se actualiza la temporada
+## Contenido y temporada
 
-Los datos confirmados de campaña viven en `src/content/camp-config.ts`; el resto del contenido editorial está en `src/content/site-content.ts`. Antes de editar la interfaz, actualiza:
+Los datos confirmados de campaña viven en `src/content/camp-config.ts`; el contenido editorial anual está en `src/content/site-content.ts`.
 
-- `campSeason.year`, estado, mensaje y descripción en `camp-config.ts`;
-- `campSeason.sessions`, que contiene los turnos y precios confirmados; la disponibilidad se consulta por separado;
+Antes de publicar cambios hay que revisar:
+
+- año, estado, turnos y precios en `campSeason`;
 - teléfono, email, dirección y redes en `organization`;
-- horario, actividades, cuidados, testimonios y FAQ.
+- experiencias, principios de cuidado, testimonios y preguntas frecuentes;
+- que ninguna actividad variable se presente como una rutina garantizada;
+- que disponibilidad, condiciones médicas y transporte se confirmen con Orea.
 
-No publiques una sesión, precio, plaza disponible, oferta o dato médico sin validación de Orea. Si cambia el modelo `Season`, actualiza también sus pruebas y evita añadir JSON-LD de tipo `Offer` o `Event` hasta disponer de disponibilidad y condiciones verificadas.
+No se debe añadir JSON-LD de tipo `Offer` o `Event` sin disponibilidad y condiciones verificadas.
 
-## Imágenes y propiedad
+## Fotografía editorial y licencias
 
-Las fotografías de `public/images/orea/` proceden de la web existente de Orea y se reutilizan para este rediseño. Antes del despliegue de producción, la propiedad o licencia de publicación debe quedar confirmada por Orea. Los textos alternativos están en `site-content.ts` o junto al componente que usa la imagen.
+Las imágenes de alta resolución incluidas en `public/images/orea/stock-*.jpg` proceden de Unsplash y se usan como representación editorial del tipo de experiencia, no como fotografías de las instalaciones de Orea. La página lo indica junto a la galería.
 
-Para sustituir una fotografía se puede conservar el nombre de archivo o actualizar su ruta en el contenido. Después hay que revisar el recorte en 390, 768 y 1440 px y ejecutar las pruebas end-to-end para detectar recursos rotos.
+Créditos y páginas de origen:
 
-## SEO y accesibilidad
+- `stock-trail.jpg`: [Annie Spratt](https://unsplash.com/photos/girl-and-boy-walking-on-forest-trail-GIK1tsETnXI).
+- `stock-hero.jpg`: [Daria Trofimova](https://unsplash.com/photos/a-group-of-children-walking-through-a-forest-u2jcCo5KJIA).
+- `stock-farm.jpg`: [Imdad Jayd](https://unsplash.com/photos/a-young-child-holds-a-spotted-baby-goat-on-grass-40i2WzrJBo0).
+- `stock-adventure.jpg`: [Aarón Blanco Tejedor](https://unsplash.com/photos/child-climbing-over-rocks-in-nature-DmXTuoL17Ao).
+- `stock-celebration.jpg`: [nugh hade](https://unsplash.com/photos/children-playing-a-balloon-race-outdoors-with-adults-watching-uNIzjTX6T4U).
+- `stock-horse.jpg`: [Josh Withers](https://unsplash.com/photos/a-young-child-riding-a-horse-in-front-of-a-barn-egbrBASop94).
+- `stock-group.jpg`: [setengah limasore](https://unsplash.com/photos/children-are-gathered-together-outside-possibly-playing-TZFZwWqwVRM).
+
+Todas se descargaron desde páginas que las identifican como gratuitas bajo la [licencia de Unsplash](https://unsplash.com/license). Si se sustituye una imagen, se debe actualizar su ruta, texto alternativo y crédito, y revisar los recortes a 390, 768 y 1440 px.
+
+## SEO, accesibilidad y rendimiento
 
 - Metadatos, canonical y Open Graph: `src/lib/seo.ts`.
 - Datos estructurados Organization, WebSite y FAQPage: `src/components/page-sections.tsx`.
 - `robots.txt`, `sitemap.xml`, icono y Open Graph se generan desde App Router.
 - Canonical de producción: `https://campamentos.granjaorea.com/`.
-- El menú, FAQ, preferencias de movimiento reducido y flujo sin JavaScript tienen cobertura automatizada.
+- El menú, FAQ, calculadora, mapa, flujo sin JavaScript y preferencias de movimiento reducido tienen cobertura automatizada.
+- Las fotografías se sirven localmente y Next.js genera tamaños optimizados; no dependen de un CDN fotográfico de terceros durante la visita.
 
-Auditoría móvil local del 28-08-2026: Lighthouse 95 Performance, 100 Accessibility, 100 Best Practices y 100 SEO; 264 KiB transferidos, TBT 110 ms y CLS 0. El LCP local medido fue 2,8 s y debe volver a medirse en la URL Preview/Production de Vercel —el objetivo de producción es inferior a 2,5 s— porque las ejecuciones locales mostraron variación por carga del equipo.
+## GitHub y Vercel
 
-## Copia de seguridad en GitHub
+El trabajo se desarrolla en `feat/orea-redesign` y se publica en el repositorio `Andreh33/granjaorea`. Antes de integrar cambios en `main` se ejecutan lint, tipado, pruebas de componentes, build y pruebas end-to-end.
 
-El trabajo está organizado en commits sobre la rama `feat/orea-redesign`. Cuando exista el repositorio remoto:
-
-```bash
-git remote add origin <URL_DEL_REPOSITORIO>
-git push -u origin feat/orea-redesign
-```
-
-Antes de integrar cambios en `main`, ejecuta instalación limpia, lint, tipado, pruebas de componentes, build y pruebas de navegador. El workflow automático de GitHub Actions se puede añadir cuando la sesión de GitHub disponga del permiso `workflow`.
-
-## Publicación en Vercel
-
-Instala primero la CLI exacta solicitada para operar el proyecto:
-
-```bash
-npm i -g vercel
-vercel login
-vercel link
-vercel
-```
-
-El último comando crea una Preview. Revisa esa URL en móvil y escritorio, verifica el dominio y solo entonces promueve a producción:
+El proyecto está enlazado con Vercel. Una publicación manual de producción se realiza con:
 
 ```bash
 vercel --prod
 ```
 
-Puertas obligatorias antes de Producción:
-
-- repositorio de GitHub conectado y pruebas de calidad verdes;
-- proyecto de Vercel enlazado al repositorio;
-- precios y fechas 2027 revisados; condiciones y disponibilidad confirmadas antes de aceptar reservas;
-- textos legales y consentimiento revisados por Orea;
-- propiedad de fotografías confirmada;
-- dominio `campamentos.granjaorea.com` asociado y DNS validado;
-- analítica/cookies configuradas únicamente si existe consentimiento válido.
-
-## Calculadora y datos personales
-
-La calculadora es un asistente local para preparar una consulta, no un formulario de reserva. No hay base de datos, endpoint ni envío silencioso: la familia revisa el mensaje antes de enviarlo desde WhatsApp. Si Orea quiere almacenar solicitudes en el futuro, habrá que añadir consentimiento explícito, política de conservación, validación de servidor y protección antiabuso antes de activar esa captación.
+Antes de producción hay que comprobar la URL Preview, el dominio, los textos legales, las fechas y precios, y el flujo completo de WhatsApp. La calculadora es un asistente para preparar una consulta: no crea una reserva ni almacena datos personales.

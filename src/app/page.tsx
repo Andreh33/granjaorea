@@ -1,17 +1,17 @@
-import { ActivitiesGrid } from "@/components/activities-grid";
 import { CampCalculator } from "@/components/camp-calculator";
 import { CareSection } from "@/components/care-section";
 import { ConversionCta } from "@/components/conversion-cta";
-import { DayTimeline } from "@/components/day-timeline";
 import { Faq } from "@/components/faq";
 import { Hero } from "@/components/hero";
 import { LocationMap } from "@/components/location-map";
+import { PhotoGallery } from "@/components/photo-gallery";
 import {
   StructuredData,
   Testimonials,
   TrustStrip,
 } from "@/components/page-sections";
 import { SiteHeader } from "@/components/site-header";
+import { YearRoundExperiences } from "@/components/year-round-experiences";
 
 export default function HomePage() {
   return (
@@ -21,8 +21,8 @@ export default function HomePage() {
       <main id="contenido">
         <Hero />
         <TrustStrip />
-        <DayTimeline />
-        <ActivitiesGrid />
+        <YearRoundExperiences />
+        <PhotoGallery />
         <CareSection />
         <Testimonials />
         <CampCalculator />

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 import { campSeason } from "@/content/camp-config";
 
@@ -83,7 +84,7 @@ export function HeaderMobileMenu({ links }: HeaderMobileMenuProps) {
         <span aria-hidden="true" />
       </button>
 
-      {isOpen ? (
+      {isOpen ? createPortal(
         <div
           aria-label="Menú principal"
           aria-modal="true"
@@ -113,9 +114,10 @@ export function HeaderMobileMenu({ links }: HeaderMobileMenuProps) {
             </a>
           </nav>
           <p className={styles.mobileMenuMeta}>
-            Ciudad Real · 6 a 16 años · desde 1990
+            Ciudad Real · experiencias todo el año · desde 1990
           </p>
-        </div>
+        </div>,
+        document.body,
       ) : null}
     </div>
   );

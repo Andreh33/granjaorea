@@ -3,14 +3,16 @@ import { expect, it } from "vitest";
 
 import { Hero } from "./hero";
 
-it("renders one visible campaign h1 and routes families to the confirmed turns", () => {
+it("positions Orea for the whole year and keeps summer conversion available", () => {
   render(<Hero />);
 
   expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-    "El verano en el que empiezan a volver distintos",
+    "Naturaleza para vivirla. Todo el año.",
   );
   expect(
-    screen.getByRole("link", { name: /ver turnos y calcular/i }),
+    screen.getByRole("link", { name: /calcular campamento/i }),
   ).toHaveAttribute("href", "#temporada");
-  expect(screen.getByText(/turnos y precios 2027 confirmados/i)).toBeInTheDocument();
+  expect(
+    screen.getByRole("link", { name: /descubrir experiencias/i }),
+  ).toHaveAttribute("href", "#experiencias");
 });

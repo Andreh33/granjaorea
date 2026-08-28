@@ -8,15 +8,15 @@ import {
 import styles from "./page-sections.module.css";
 
 const trustFacts = [
-  { value: "1990", label: "acompañando veranos" },
-  { value: "6–16", label: "años · grupos por edad" },
-  { value: "Ciudad Real", label: "en el parque de La Atalaya" },
-  { value: "2 h", label: "aprox. desde Madrid" },
+  { value: "1990", label: "creando experiencias" },
+  { value: "80+", label: "especies en la granja" },
+  { value: "Fines de semana", label: "visitas familiares con cita" },
+  { value: "Ciudad Real", label: "en el entorno de La Atalaya" },
 ] as const;
 
 export function TrustStrip() {
   return (
-    <section aria-label="Datos clave de Orea Camp" className={styles.trust}>
+    <section aria-label="Datos clave de Granja Escuela Orea" className={styles.trust}>
       <ul className={styles.trustList}>
         {trustFacts.map((fact, index) => (
           <li className={styles.trustItem} key={fact.label}>

@@ -1,5 +1,8 @@
 .section {
-  background: var(--color-sand);
+  background:
+    radial-gradient(circle at 82% 9%, rgb(121 220 255 / 0.25), transparent 19%),
+    radial-gradient(circle at 8% 75%, rgb(210 139 255 / 0.16), transparent 24%),
+    #f1ecd9;
   color: var(--color-ink);
   contain-intrinsic-block-size: auto 82rem;
   content-visibility: auto;
@@ -81,9 +84,12 @@
 }
 
 .form {
-  border-bottom: 1px solid rgb(22 32 30 / 0.22);
-  border-top: 1px solid rgb(22 32 30 / 0.22);
-  padding: clamp(2.25rem, 5vw, 4.5rem) 0;
+  backdrop-filter: blur(18px);
+  background: rgb(255 255 255 / 0.44);
+  border: 1px solid rgb(22 32 30 / 0.12);
+  border-radius: clamp(1rem, 2.5vw, 2rem);
+  box-shadow: 0 2.5rem 7rem rgb(22 32 30 / 0.1), inset 0 1px 0 rgb(255 255 255 / 0.7);
+  padding: clamp(1.2rem, 4vw, 3.5rem);
 }
 
 .form fieldset {
@@ -100,13 +106,16 @@
 
 .sessionGrid {
   display: grid;
-  gap: 1px;
+  gap: clamp(0.8rem, 2vw, 1.4rem);
   grid-template-columns: repeat(2, 1fr);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .sessionCard {
   background: #e5dbc5;
+  border: 1px solid rgb(22 32 30 / 0.1);
+  border-radius: 1.2rem;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.6);
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -117,7 +126,11 @@
 }
 
 .sessionCard:has(input:checked) {
-  background: var(--color-forest);
+  background:
+    radial-gradient(circle at 88% 8%, rgb(121 220 255 / 0.18), transparent 24%),
+    linear-gradient(145deg, #113b33, #071d1a);
+  border-color: rgb(179 255 72 / 0.4);
+  box-shadow: 0 1.8rem 4rem rgb(7 29 26 / 0.22), inset 0 1px 0 rgb(255 255 255 / 0.12);
   color: var(--color-sand);
 }
 
@@ -128,7 +141,7 @@
 }
 
 .sessionCard:hover {
-  transform: translateY(-0.25rem);
+  transform: translateY(-0.4rem);
 }
 
 .sessionCard input {
@@ -159,7 +172,7 @@
 }
 
 .sessionCard:has(input:checked) .radioMark::after {
-  background: var(--color-orange);
+  background: #b3ff48;
   border-radius: 50%;
   content: "";
   inset: 0.25rem;
@@ -201,7 +214,7 @@
 }
 
 .sessionCard:has(input:checked) .sessionPrice b {
-  color: var(--color-orange);
+  color: #b3ff48;
 }
 
 .sessionPrice span {
@@ -275,7 +288,12 @@
 
 .summary {
   align-items: center;
-  background: var(--color-sky);
+  background:
+    radial-gradient(circle at 90% 10%, rgb(210 139 255 / 0.28), transparent 24%),
+    linear-gradient(120deg, #dce9e6, #e8f7df);
+  border: 1px solid rgb(16 44 39 / 0.1);
+  border-radius: 1.2rem;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.68);
   display: flex;
   justify-content: space-between;
   margin-top: clamp(3rem, 6vw, 5.5rem);
@@ -354,7 +372,7 @@
 
 .submitRow button {
   align-items: center;
-  background: var(--color-orange);
+  background: #b3ff48;
   border: 0;
   border-radius: 999px;
   color: var(--color-ink);
@@ -369,7 +387,7 @@
 }
 
 .submitRow button:hover {
-  background: #ff8a45;
+  background: #c4ff70;
   transform: translateY(-2px);
 }
 

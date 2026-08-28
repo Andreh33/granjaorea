@@ -1,15 +1,23 @@
 import Image from "next/image";
 
-import { campSeason } from "@/content/camp-config";
 import { siteContent } from "@/content/site-content";
 
 import { HeroEntrance } from "./hero-entrance";
-import { RouteLine } from "./route-line";
 import styles from "./hero.module.css";
 
 export function Hero() {
   return (
     <section aria-labelledby="hero-title" className={styles.hero} id="inicio">
+      <Image
+        alt=""
+        className={styles.backgroundImage}
+        fill
+        preload
+        quality={90}
+        sizes="100vw"
+        src="/images/orea/stock-trail.jpg"
+      />
+      <div aria-hidden="true" className={styles.backgroundWash} />
       <div className={styles.light} aria-hidden="true" />
       <div className={styles.shell}>
         <div className={styles.copy}>
@@ -21,9 +29,9 @@ export function Hero() {
           </HeroEntrance>
 
           <h1 className={styles.title} id="hero-title">
-            <span>El verano en el que </span>
-            <span>empiezan a volver </span>
-            <span className={styles.titleAccent}>distintos</span>
+            <span>Naturaleza </span>
+            <span>para vivirla. </span>
+            <span className={styles.titleAccent}>Todo el año.</span>
           </h1>
 
           <HeroEntrance delay={0.2}>
@@ -36,48 +44,28 @@ export function Hero() {
                 className={styles.primaryAction}
                 href="#temporada"
               >
-                Ver turnos y calcular
+                Calcular campamento
                 <span aria-hidden="true" className={styles.actionArrow}>
                   ↓
                 </span>
               </a>
-              <a className={styles.secondaryAction} href="#experiencia">
-                Recorre un día en Orea
+              <a className={styles.secondaryAction} href="#experiencias">
+                Descubrir experiencias
                 <span aria-hidden="true">↓</span>
               </a>
             </div>
-            <p className={styles.status}>
-              <span aria-hidden="true" className={styles.statusDot} />
-              {campSeason.message}
-            </p>
+            <ul className={styles.heroFacts} aria-label="Datos clave de Orea">
+              {siteContent.hero.facts.map((fact) => (
+                <li key={fact.label}>
+                  <strong>{fact.value}</strong>
+                  <span>{fact.label}</span>
+                </li>
+              ))}
+            </ul>
           </HeroEntrance>
         </div>
-
-        <HeroEntrance className={styles.visual} delay={0.16}>
-          <figure className={styles.figure}>
-            <Image
-              alt="Niñas y niños explorando un arroyo en el entorno natural de Orea Camp"
-              className={styles.image}
-              fill
-              preload
-              quality={60}
-              sizes="(max-width: 760px) 100vw, 51vw"
-              src="/images/orea/hero-orea.jpg"
-            />
-            <div aria-hidden="true" className={styles.imageWash} />
-            <figcaption className={styles.caption}>
-              <span>En plena naturaleza</span>
-              <strong>La Atalaya · Ciudad Real</strong>
-            </figcaption>
-            <div aria-hidden="true" className={styles.imageIndex}>
-              01
-              <span>/</span>
-              OREA
-            </div>
-          </figure>
-        </HeroEntrance>
+        <p className={styles.locationStamp}>La Atalaya · Ciudad Real · 38.98° N</p>
       </div>
-      <RouteLine />
     </section>
   );
 }
