@@ -1,11 +1,6 @@
-"use client";
+import type { CSSProperties, ReactNode } from "react";
 
-import { useEffect, type ReactNode } from "react";
-import {
-  motion,
-  useAnimationControls,
-  useReducedMotion,
-} from "motion/react";
+import styles from "./hero-entrance.module.css";
 
 interface HeroEntranceProps {
   readonly children: ReactNode;
@@ -18,32 +13,16 @@ export function HeroEntrance({
   className,
   delay = 0,
 }: HeroEntranceProps) {
-  const controls = useAnimationControls();
-  const shouldReduceMotion = useReducedMotion();
-
-  useEffect(() => {
-    if (shouldReduceMotion) {
-      return;
-    }
-
-    void controls.start({
-      opacity: [0, 1],
-      y: [18, 0],
-      transition: {
-        delay,
-        duration: 0.72,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    });
-  }, [controls, delay, shouldReduceMotion]);
+  const style = {
+    "--entrance-delay": `${delay}s`,
+  } as CSSProperties;
 
   return (
-    <motion.div
-      animate={controls}
-      className={className}
-      initial={false}
+    <div
+      className={`${styles.entrance} ${className ?? ""}`}
+      style={style}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

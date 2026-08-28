@@ -1,20 +1,4 @@
-export type SeasonStatus = "prelaunch" | "open" | "closed";
-
-export interface SeasonSession {
-  readonly id: string;
-  readonly label: string;
-  readonly dateRange: string;
-  readonly availability: "available" | "limited" | "waitlist" | "closed";
-}
-
-export interface Season {
-  readonly year: number;
-  readonly status: SeasonStatus;
-  readonly eyebrow: string;
-  readonly message: string;
-  readonly description: string;
-  readonly sessions: readonly SeasonSession[];
-}
+import { campSeason, oreaLocation, type CampSeason } from "./camp-config";
 
 export interface TimelineItem {
   readonly id: string;
@@ -86,7 +70,7 @@ export interface SiteContent {
       readonly label: string;
     }[];
   };
-  readonly season: Season;
+  readonly season: CampSeason;
   readonly timeline: readonly TimelineItem[];
   readonly activities: readonly Activity[];
   readonly care: readonly CareFact[];
@@ -102,12 +86,7 @@ export const siteContent = {
     email: "granjaorea@hotmail.com",
     phoneDisplay: "+34 615 367 717",
     phoneE164: "34615367717",
-    address: {
-      street: "Carretera de Toledo, s/n",
-      locality: "Ciudad Real",
-      region: "Castilla-La Mancha",
-      country: "ES",
-    },
+    address: oreaLocation,
     social: {
       instagram: "https://www.instagram.com/granjaescuelaorea/",
       facebook: "https://www.facebook.com/profile.php?id=61560544319855",
@@ -131,15 +110,7 @@ export const siteContent = {
       { value: "80+", label: "especies en la granja" },
     ],
   },
-  season: {
-    year: 2027,
-    status: "prelaunch",
-    eyebrow: "Próxima temporada",
-    message: "Fechas y plazas próximamente",
-    description:
-      "Estamos preparando la próxima edición. Escríbenos y te avisaremos cuando publiquemos turnos, precios y condiciones.",
-    sessions: [],
-  },
+  season: campSeason,
   timeline: [
     {
       id: "despertar",
@@ -439,9 +410,9 @@ export const siteContent = {
     },
     {
       id: "dates-prices",
-      question: "¿Cuándo se publican las fechas y precios de 2027?",
+      question: "¿Cuáles son los turnos y precios de 2027?",
       answer:
-        "Todavía estamos preparando la temporada 2027. Escríbenos por WhatsApp y te avisaremos cuando estén confirmados los turnos, los precios, las condiciones y la apertura de plazas.",
+        "La primera quincena, del 1 al 15 de julio, tiene un precio base de 690 € por participante. La segunda, del 16 al 30 de julio, cuesta 630 €. Puedes preparar tu consulta con la calculadora y el equipo confirmará por WhatsApp la disponibilidad y las condiciones.",
     },
   ],
 } as const satisfies SiteContent;

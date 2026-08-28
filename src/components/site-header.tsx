@@ -7,7 +7,7 @@ export function SiteHeader() {
   return (
     <header className={styles.header}>
       <div className={styles.bar}>
-        <a aria-label="Orea Camp, volver al inicio" className={styles.logo} href="#inicio">
+        <a className={styles.logo} href="#inicio">
           <svg aria-hidden="true" viewBox="0 0 40 40">
             <circle cx="20" cy="20" r="18" />
             <path d="M8 25c6-9 11-11 17-10 4 .5 6 3 8 7" />
@@ -30,7 +30,7 @@ export function SiteHeader() {
         </nav>
 
         <a className={styles.seasonLink} href="#temporada">
-          Temporada 2027
+          Turnos y precios
           <span aria-hidden="true">↘</span>
         </a>
 

@@ -1,6 +1,8 @@
 .activities {
   background: var(--color-forest);
   color: var(--color-sand);
+  contain-intrinsic-block-size: auto 240rem;
+  content-visibility: auto;
   overflow: clip;
   padding: clamp(6rem, 11vw, 11rem) var(--page-gutter);
 }
@@ -75,7 +77,10 @@
   content-visibility: auto;
   grid-column: span 6;
   min-width: 0;
+  transform: perspective(68.75rem) rotateX(var(--tilt-x, 0deg))
+    rotateY(var(--tilt-y, 0deg));
   transform-style: preserve-3d;
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .card:nth-child(1),
@@ -204,6 +209,10 @@
 }
 
 @media (max-width: 620px) {
+  .activities {
+    contain-intrinsic-block-size: auto 407rem;
+  }
+
   .intro h2 {
     font-size: clamp(3.15rem, 15vw, 5rem);
     max-width: 8.5ch;
@@ -238,6 +247,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .card {
+    transform: none;
+    transition: none;
+  }
+
   .image {
     transition: none;
   }

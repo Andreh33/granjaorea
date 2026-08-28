@@ -1,6 +1,6 @@
 import { siteContent } from "@/content/site-content";
 
-import { DayTimelineMotion } from "./day-timeline-motion";
+import { DayTimelineStory } from "./day-timeline-story";
 import styles from "./day-timeline.module.css";
 
 const phaseLabels = {
@@ -33,7 +33,7 @@ export function DayTimeline() {
   );
 
   return (
-    <DayTimelineMotion intro={intro}>
+    <DayTimelineStory intro={intro}>
       <ol aria-label="Horario de un día en Orea Camp" className={styles.list}>
         {siteContent.timeline.map((item, index) => (
           <li className={styles.item} data-phase={item.phase} key={item.id}>
@@ -51,6 +51,6 @@ export function DayTimeline() {
           </li>
         ))}
       </ol>
-    </DayTimelineMotion>
+    </DayTimelineStory>
   );
 }

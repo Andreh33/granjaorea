@@ -20,7 +20,7 @@ export interface FaqJsonLd {
 export function buildMetadata(): Metadata {
   const title = "Campamento de verano en Ciudad Real | Orea Camp 2027";
   const description =
-    "Campamento de verano en Ciudad Real para niños y jóvenes de 6 a 16 años. Naturaleza, multiaventura, hípica y más de 35 años de experiencia.";
+    "Campamento de verano en Ciudad Real para niños y jóvenes de 6 a 16 años. Turnos del 1 al 30 de julio de 2027 desde 630 €: naturaleza, multiaventura e hípica.";
 
   return {
     metadataBase: new URL(siteContent.organization.url),

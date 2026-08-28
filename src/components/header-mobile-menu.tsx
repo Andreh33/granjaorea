@@ -106,7 +106,7 @@ export function HeaderMobileMenu({ links }: HeaderMobileMenuProps) {
               href="#temporada"
               onClick={closeAndRestoreFocus}
             >
-              Temporada 2027
+              Turnos y precios 2027
               <span aria-hidden="true">↘</span>
             </a>
           </nav>

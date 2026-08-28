@@ -1,9 +1,13 @@
 .timeline {
   background: var(--color-sky);
   color: var(--color-forest);
+  contain-intrinsic-block-size: auto 360rem;
+  content-visibility: auto;
   overflow: clip;
   padding: clamp(6rem, 11vw, 11rem) var(--page-gutter);
   position: relative;
+  view-timeline-axis: block;
+  view-timeline-name: --orea-day;
 }
 
 .timeline::before {
@@ -257,6 +261,77 @@
   transform-origin: top;
 }
 
+@supports (animation-timeline: view()) {
+  .dialFace {
+    animation: dial-turn both linear;
+    animation-range: entry 0% exit 100%;
+    animation-timeline: --orea-day;
+  }
+
+  .sun {
+    animation: sun-route both linear;
+    animation-range: entry 0% exit 100%;
+    animation-timeline: --orea-day;
+  }
+
+  .dialGlow {
+    animation: daylight-glow both linear;
+    animation-range: entry 0% exit 100%;
+    animation-timeline: --orea-day;
+  }
+
+  .routeProgress {
+    animation: route-progress both linear;
+    animation-range: entry 0% exit 100%;
+    animation-timeline: --orea-day;
+  }
+}
+
+@keyframes dial-turn {
+  from {
+    transform: rotate(-68deg);
+  }
+
+  to {
+    transform: rotate(64deg);
+  }
+}
+
+@keyframes sun-route {
+  0% {
+    transform: translate(-5.5rem, 3.375rem);
+  }
+
+  50% {
+    transform: translate(0, -4.75rem);
+  }
+
+  100% {
+    transform: translate(5.5rem, 2.625rem);
+  }
+}
+
+@keyframes daylight-glow {
+  0%,
+  100% {
+    opacity: 0.24;
+  }
+
+  48% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes route-progress {
+  from {
+    transform: scaleY(0);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
+}
+
 .list {
   list-style: none;
   margin: 0;
@@ -407,7 +482,16 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .dialFace,
+  .sun,
+  .routeProgress {
+    animation: none;
+    transform: none;
+  }
+
   .dialGlow {
+    animation: none;
     filter: none;
+    opacity: 0.5;
   }
 }

@@ -1,6 +1,8 @@
 .faq {
   background: var(--color-sky);
   color: var(--color-forest);
+  contain-intrinsic-block-size: auto 95rem;
+  content-visibility: auto;
   padding: clamp(6rem, 11vw, 11rem) var(--page-gutter);
 }
 

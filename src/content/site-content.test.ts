@@ -3,11 +3,23 @@ import { describe, expect, it } from "vitest";
 import { siteContent } from "./site-content";
 
 describe("siteContent", () => {
-  it("publishes an honest 2027 prelaunch state", () => {
+  it("publishes confirmed 2027 prices without claiming availability", () => {
     expect(siteContent.season.year).toBe(2027);
     expect(siteContent.season.status).toBe("prelaunch");
-    expect(siteContent.season.sessions).toEqual([]);
-    expect(siteContent.season.message).toBe("Fechas y plazas próximamente");
+    expect(siteContent.season.sessions).toEqual([
+      expect.objectContaining({
+        id: "first",
+        dateRange: "1–15 de julio",
+        priceEur: 690,
+      }),
+      expect.objectContaining({
+        id: "second",
+        dateRange: "16–30 de julio",
+        priceEur: 630,
+      }),
+    ]);
+    expect(siteContent.season.message).toMatch(/turnos y precios.*confirmados/i);
+    expect(siteContent.season.description).toMatch(/disponibilidad/i);
   });
 
   it("contains a chronological, complete camp day", () => {
@@ -16,7 +28,7 @@ describe("siteContent", () => {
     expect(siteContent.timeline.length).toBeGreaterThanOrEqual(8);
   });
 
-  it("does not expose stale 2026 sales language", () => {
-    expect(JSON.stringify(siteContent)).not.toMatch(/690|630|últimas plazas/i);
+  it("does not manufacture urgency around places", () => {
+    expect(JSON.stringify(siteContent)).not.toMatch(/últimas plazas|plazas disponibles/i);
   });
 });

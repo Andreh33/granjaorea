@@ -50,7 +50,7 @@ test("mobile menu has a complete keyboard close flow", async ({ page }) => {
   await expect(trigger).toBeFocused();
 });
 
-test("mobile contact action disappears before colliding with the footer", async ({
+test("mobile contact action disappears before colliding with interactive sections", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
@@ -62,9 +62,121 @@ test("mobile contact action disappears before colliding with the footer", async 
   });
   await expect(sticky).toBeVisible();
 
+  await page.locator("#temporada").scrollIntoViewIfNeeded();
+  await expect(sticky).toBeHidden();
+
+  await page.locator("#ubicacion").scrollIntoViewIfNeeded();
+  await expect(sticky).toBeHidden();
+
   await page.locator("[data-site-footer]").scrollIntoViewIfNeeded();
   await expect(sticky).toBeHidden();
   await expect(page.locator("[data-site-footer]")).toBeVisible();
+});
+
+test("calculator prepares the selected price and family details for WhatsApp", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(window, "open", {
+      configurable: true,
+      value: (url: string | URL | undefined) => {
+        Object.assign(window, { __oreaWhatsAppUrl: String(url) });
+        return null;
+      },
+    });
+  });
+  await page.goto("/#temporada");
+
+  await page.getByRole("radio", { name: /segunda quincena.*630/i }).click();
+  await expect(page.getByTestId("estimate-total")).toHaveText("630");
+  await page.getByLabel(/nombre del responsable/i).fill("Ana López");
+  await page.getByLabel(/^teléfono/i).fill("+34 612 345 678");
+  await page.getByLabel(/edad del niño/i).fill("9");
+  await page.getByRole("button", { name: /continuar por whatsapp/i }).click();
+
+  const conversationUrl = await page.evaluate(
+    () => (window as typeof window & { __oreaWhatsAppUrl?: string }).__oreaWhatsAppUrl,
+  );
+  const conversation = decodeURIComponent(conversationUrl ?? "");
+  expect(conversation).toContain("wa.me/34615367717");
+  expect(conversation).toContain("Ana López");
+  expect(conversation).toContain("9 años");
+  expect(conversation).toContain("Segunda quincena");
+  expect(conversation).toContain("630 €");
+});
+
+test("location keeps Google Maps private until the visitor requests it", async ({
+  page,
+}) => {
+  const mapRequests: string[] = [];
+  page.on("request", (request) => {
+    if (request.url().includes("google.com/maps")) {
+      mapRequests.push(request.url());
+    }
+  });
+  await page.goto("/#ubicacion");
+
+  await expect(page.getByTitle(/mapa interactivo/i)).toHaveCount(0);
+  expect(mapRequests).toEqual([]);
+  await page.getByRole("button", { name: /cargar mapa interactivo/i }).click();
+
+  await expect(page.getByTitle(/mapa interactivo/i)).toBeVisible();
+  await expect(page.getByTitle(/mapa interactivo/i)).toHaveAttribute(
+    "src",
+    /google\.com\/maps.*output=embed/,
+  );
+  await expect(
+    page.getByRole("link", { name: /cómo llegar con google maps/i }),
+  ).toHaveAttribute("target", "_blank");
+});
+
+test("the day route follows native scroll and respects reduced motion", async ({
+  browser,
+  page,
+}) => {
+  test.skip(
+    test.info().project.name !== "desktop-chromium",
+    "One Chromium engine is enough for the motion contract",
+  );
+
+  await page.goto("/");
+  const section = page.locator("#experiencia");
+  const sectionBox = await section.boundingBox();
+  const dialFace = page.getByTestId("daylight-dial").locator("div").nth(1);
+  expect(sectionBox).not.toBeNull();
+
+  await page.evaluate((scrollTop) => window.scrollTo(0, scrollTop), sectionBox!.y + 300);
+  await page.waitForTimeout(100);
+  const startTransform = await dialFace.evaluate(
+    (element) => getComputedStyle(element).transform,
+  );
+
+  const middleScroll = sectionBox!.y + sectionBox!.height * 0.6;
+  await page.evaluate((scrollTop) => window.scrollTo(0, scrollTop), middleScroll);
+  await page.waitForTimeout(100);
+  const middleTransform = await dialFace.evaluate(
+    (element) => getComputedStyle(element).transform,
+  );
+
+  expect(Math.abs((await page.evaluate(() => window.scrollY)) - middleScroll)).toBeLessThan(
+    2,
+  );
+  expect(middleTransform).not.toBe(startTransform);
+
+  const reducedContext = await browser.newContext({
+    baseURL: "http://127.0.0.1:4173",
+    reducedMotion: "reduce",
+    viewport: { width: 1440, height: 1000 },
+  });
+  const reducedPage = await reducedContext.newPage();
+  await reducedPage.goto("/");
+  const reducedFace = reducedPage
+    .getByTestId("daylight-dial")
+    .locator("div")
+    .nth(1);
+  await reducedFace.scrollIntoViewIfNeeded();
+  await expect(reducedFace).toHaveCSS("transform", "none");
+  await reducedContext.close();
 });
 
 test("canonical and structured data describe the same public site", async ({
@@ -122,7 +234,13 @@ test("the rendered page has no broken images, page errors, or serious axe violat
   await page.goto("/", { waitUntil: "networkidle" });
   const imageLocator = page.locator("img");
   for (let index = 0; index < (await imageLocator.count()); index += 1) {
-    await imageLocator.nth(index).scrollIntoViewIfNeeded();
+    const image = imageLocator.nth(index);
+    await image.scrollIntoViewIfNeeded();
+    await expect
+      .poll(() =>
+        image.evaluate((element) => (element as HTMLImageElement).naturalWidth),
+      )
+      .toBeGreaterThan(0);
   }
   await page.waitForLoadState("networkidle");
 

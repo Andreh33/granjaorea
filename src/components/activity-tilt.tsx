@@ -1,12 +1,6 @@
 "use client";
 
-import { type PointerEvent, type ReactNode } from "react";
-import {
-  motion,
-  useMotionValue,
-  useReducedMotion,
-  useSpring,
-} from "motion/react";
+import { type CSSProperties, type PointerEvent, type ReactNode } from "react";
 
 interface ActivityTiltProps {
   readonly ariaLabelledby: string;
@@ -19,19 +13,16 @@ export function ActivityTilt({
   children,
   className,
 }: ActivityTiltProps) {
-  const shouldReduceMotion = useReducedMotion();
-  const rotateXValue = useMotionValue(0);
-  const rotateYValue = useMotionValue(0);
-  const rotateX = useSpring(rotateXValue, { stiffness: 240, damping: 26 });
-  const rotateY = useSpring(rotateYValue, { stiffness: 240, damping: 26 });
-
-  const resetTilt = () => {
-    rotateXValue.set(0);
-    rotateYValue.set(0);
+  const resetTilt = (event: PointerEvent<HTMLElement>) => {
+    event.currentTarget.style.setProperty("--tilt-x", "0deg");
+    event.currentTarget.style.setProperty("--tilt-y", "0deg");
   };
 
   const handlePointerMove = (event: PointerEvent<HTMLElement>) => {
-    if (shouldReduceMotion || event.pointerType !== "mouse") {
+    if (
+      event.pointerType !== "mouse" ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
       return;
     }
 
@@ -39,25 +30,26 @@ export function ActivityTilt({
     const horizontal = (event.clientX - bounds.left) / bounds.width - 0.5;
     const vertical = (event.clientY - bounds.top) / bounds.height - 0.5;
 
-    rotateXValue.set(vertical * -6);
-    rotateYValue.set(horizontal * 6);
+    event.currentTarget.style.setProperty("--tilt-x", `${vertical * -6}deg`);
+    event.currentTarget.style.setProperty("--tilt-y", `${horizontal * 6}deg`);
   };
 
+  const style = {
+    "--tilt-x": "0deg",
+    "--tilt-y": "0deg",
+  } as CSSProperties;
+
   return (
-    <motion.article
+    <article
       aria-labelledby={ariaLabelledby}
       className={className}
       onPointerCancel={resetTilt}
       onPointerLeave={resetTilt}
       onPointerMove={handlePointerMove}
       onPointerUp={resetTilt}
-      style={
-        shouldReduceMotion
-          ? undefined
-          : { rotateX, rotateY, transformPerspective: 1100 }
-      }
+      style={style}
     >
       {children}
-    </motion.article>
+    </article>
   );
 }

@@ -1,11 +1,12 @@
 import { ActivitiesGrid } from "@/components/activities-grid";
+import { CampCalculator } from "@/components/camp-calculator";
 import { CareSection } from "@/components/care-section";
 import { ConversionCta } from "@/components/conversion-cta";
 import { DayTimeline } from "@/components/day-timeline";
 import { Faq } from "@/components/faq";
 import { Hero } from "@/components/hero";
+import { LocationMap } from "@/components/location-map";
 import {
-  SeasonPanel,
   StructuredData,
   Testimonials,
   TrustStrip,
@@ -24,7 +25,8 @@ export default function HomePage() {
         <ActivitiesGrid />
         <CareSection />
         <Testimonials />
-        <SeasonPanel />
+        <CampCalculator />
+        <LocationMap />
         <Faq />
         <ConversionCta />
       </main>

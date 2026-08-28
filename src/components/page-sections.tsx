@@ -5,8 +5,6 @@ import {
   buildWebsiteJsonLd,
   serializeJsonLd,
 } from "@/lib/seo";
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
-
 import styles from "./page-sections.module.css";
 
 const trustFacts = [
@@ -15,10 +13,6 @@ const trustFacts = [
   { value: "Ciudad Real", label: "en el parque de La Atalaya" },
   { value: "2 h", label: "aprox. desde Madrid" },
 ] as const;
-
-const seasonWhatsAppUrl = buildWhatsAppUrl(
-  "Hola, quiero recibir información de la temporada 2027 de Orea Camp.",
-);
 
 export function TrustStrip() {
   return (
@@ -34,38 +28,6 @@ export function TrustStrip() {
           </li>
         ))}
       </ul>
-    </section>
-  );
-}
-
-export function SeasonPanel() {
-  return (
-    <section
-      aria-labelledby="season-title"
-      className={styles.season}
-      id="temporada"
-    >
-      <div className={styles.seasonGrid}>
-        <div className={styles.seasonStamp} aria-hidden="true">
-          <span>20</span>
-          <strong>27</strong>
-        </div>
-        <div className={styles.seasonCopy}>
-          <p className={styles.eyebrow}>{siteContent.season.eyebrow}</p>
-          <h2 id="season-title">Temporada {siteContent.season.year}</h2>
-          <p className={styles.seasonMessage}>{siteContent.season.message}</p>
-          <p className={styles.seasonDescription}>
-            {siteContent.season.description}
-          </p>
-        </div>
-        <div className={styles.seasonAction}>
-          <a href={seasonWhatsAppUrl} rel="noreferrer" target="_blank">
-            Quiero que me aviséis
-            <span aria-hidden="true">↗</span>
-          </a>
-          <p>Sin compromiso · respuesta personal del equipo Orea</p>
-        </div>
-      </div>
     </section>
   );
 }

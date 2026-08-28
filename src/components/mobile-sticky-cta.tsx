@@ -16,7 +16,13 @@ export function MobileStickyCta({ href }: MobileStickyCtaProps) {
       return;
     }
 
-    const blockers = ["#inicio", "#preguntas", "[data-site-footer]"]
+    const blockers = [
+      "#inicio",
+      "#temporada",
+      "#ubicacion",
+      "#preguntas",
+      "[data-site-footer]",
+    ]
       .map((selector) => document.querySelector(selector))
       .filter((element): element is Element => element !== null);
     const visibility = new Map<Element, boolean>();

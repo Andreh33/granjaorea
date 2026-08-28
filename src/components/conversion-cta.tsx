@@ -37,7 +37,6 @@ export function ConversionCta() {
                 <span aria-hidden="true">↗</span>
               </a>
               <a
-                aria-label="Llamar ahora"
                 className={styles.phoneAction}
                 href={`tel:+${organization.phoneE164}`}
               >

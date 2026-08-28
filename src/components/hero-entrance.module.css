@@ -1,0 +1,22 @@
+.entrance {
+  animation: hero-entrance 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--entrance-delay, 0s);
+}
+
+@keyframes hero-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(1.125rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entrance {
+    animation: none;
+  }
+}

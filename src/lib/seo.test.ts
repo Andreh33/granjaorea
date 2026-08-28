@@ -17,6 +17,8 @@ describe("SEO builders", () => {
       /Campamento de verano.*Ciudad Real/i,
     );
     expect(metadata.description).toMatch(/6 a 16 años/i);
+    expect(metadata.description).toMatch(/1 al 30 de julio/i);
+    expect(metadata.description).toMatch(/630 €|690 €/i);
   });
 
   it("mirrors every visible FAQ entry into valid FAQPage JSON-LD", () => {
