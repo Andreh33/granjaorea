@@ -1,13 +1,13 @@
 .trust {
-  background: var(--color-sky);
-  border-bottom: 1px solid rgb(16 44 39 / 0.11);
+  background: #fbfaf5;
+  border-block: 1px solid rgb(24 59 43 / 0.14);
   color: var(--color-forest);
   padding: 0 var(--page-gutter);
 }
 
 .trustList {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   list-style: none;
   margin: 0 auto;
   max-width: var(--content-max);
@@ -15,55 +15,47 @@
 }
 
 .trustItem {
-  display: grid;
-  gap: 0.2rem;
-  min-height: 9.25rem;
-  padding: 1.65rem clamp(1rem, 2.2vw, 2rem);
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  justify-content: center;
+  min-height: 8.5rem;
+  padding: 1.5rem clamp(1rem, 2.2vw, 2rem);
 }
 
 .trustItem + .trustItem {
-  border-left: 1px solid rgb(16 44 39 / 0.13);
-}
-
-.trustIndex {
-  color: var(--color-pine);
-  font-family: var(--font-mono), monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
-  margin-bottom: auto;
+  border-left: 1px solid rgb(24 59 43 / 0.14);
 }
 
 .trustItem strong {
-  font-family: var(--font-display), sans-serif;
-  font-size: clamp(1.35rem, 2.4vw, 2.15rem);
-  font-weight: 680;
-  letter-spacing: -0.04em;
-  line-height: 1;
+  font-family: var(--font-display), serif;
+  font-size: clamp(1.25rem, 1.8vw, 1.7rem);
+  font-weight: 650;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
 }
 
-.trustItem > span:last-child {
-  color: rgb(16 44 39 / 0.7);
-  font-size: 0.73rem;
-  line-height: 1.4;
+.trustItem span {
+  color: rgb(24 59 43 / 0.7);
+  font-size: 0.78rem;
+  line-height: 1.45;
 }
 
 .eyebrow {
-  color: var(--color-pine);
-  font-family: var(--font-mono), monospace;
-  font-size: 0.67rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  color: var(--color-straw);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   margin: 0 0 1.25rem;
   text-transform: uppercase;
 }
 
 .testimonials {
-  background: var(--color-pine);
-  color: var(--color-sand);
-  contain-intrinsic-block-size: auto 94rem;
+  background: var(--color-forest);
+  color: #fbfaf5;
+  contain-intrinsic-block-size: auto 82rem;
   content-visibility: auto;
-  padding: clamp(6rem, 11vw, 11rem) var(--page-gutter);
+  padding: clamp(5.5rem, 10vw, 9rem) var(--page-gutter);
 }
 
 .testimonialsShell {
@@ -72,123 +64,100 @@
 }
 
 .testimonialsIntro {
-  border-top: 1px solid rgb(243 233 212 / 0.2);
+  border-top: 1px solid rgb(251 250 245 / 0.22);
   display: grid;
-  gap: 2rem clamp(2rem, 6vw, 8rem);
-  grid-template-columns: minmax(0, 1.2fr) minmax(17rem, 0.8fr);
-  padding-top: 2rem;
+  gap: 2rem clamp(2rem, 6vw, 7rem);
+  grid-template-columns: minmax(0, 1.1fr) minmax(17rem, 0.8fr);
+  padding-top: 1.5rem;
 }
 
 .testimonialsIntro .eyebrow {
-  color: var(--color-sand);
   grid-column: 1 / -1;
 }
 
 .testimonialsIntro h2 {
-  font-family: var(--font-display), sans-serif;
-  font-size: clamp(3rem, 6vw, 6.8rem);
-  font-weight: 660;
-  letter-spacing: -0.065em;
-  line-height: 0.9;
+  font-family: var(--font-display), serif;
+  font-size: clamp(2.8rem, 5vw, 5.2rem);
+  font-weight: 650;
+  letter-spacing: -0.045em;
+  line-height: 1;
   margin: 0;
-  max-width: 10ch;
+  max-width: 11ch;
 }
 
 .testimonialsIntro > p:last-child {
   align-self: end;
-  color: #d9dfc8;
+  color: rgb(251 250 245 / 0.75);
   line-height: 1.7;
   margin: 0;
-  max-width: 29rem;
+  max-width: 31rem;
 }
 
 .quotes {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  margin-top: clamp(4rem, 8vw, 8rem);
+  gap: clamp(1.25rem, 2.5vw, 2.25rem);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: clamp(3.5rem, 7vw, 6rem);
 }
 
 .quote {
-  border-top: 1px solid rgb(243 233 212 / 0.22);
+  background: rgb(251 250 245 / 0.07);
+  border: 1px solid rgb(251 250 245 / 0.18);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
   margin: 0;
-  min-height: 31rem;
-  padding: 2rem clamp(1.25rem, 2.6vw, 2.5rem) 2rem 0;
-  position: relative;
-}
-
-.quote + .quote {
-  border-left: 1px solid rgb(243 233 212 / 0.22);
-  padding-left: clamp(1.25rem, 2.6vw, 2.5rem);
+  min-height: 28rem;
+  padding: clamp(1.6rem, 3vw, 2.4rem);
 }
 
 .quoteMark {
-  color: var(--color-orange);
+  color: var(--color-clay);
   display: block;
-  font-family: var(--font-display), sans-serif;
-  font-size: 5rem;
-  height: 4.5rem;
+  font-family: var(--font-display), serif;
+  font-size: 4.5rem;
+  height: 3.5rem;
   line-height: 1;
 }
 
 .quote blockquote {
-  font-family: var(--font-display), sans-serif;
-  font-size: clamp(1.35rem, 2.2vw, 2.05rem);
-  font-weight: 520;
-  letter-spacing: -0.03em;
-  line-height: 1.2;
-  margin: 2.5rem 0;
+  font-family: var(--font-display), serif;
+  font-size: clamp(1.25rem, 1.8vw, 1.65rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  margin: 2rem 0 3rem;
 }
 
 .quote figcaption {
-  bottom: 2rem;
   display: flex;
   flex-direction: column;
   gap: 0.45rem;
-  left: 0;
-  position: absolute;
-  right: 2rem;
-}
-
-.quote + .quote figcaption {
-  left: clamp(1.25rem, 2.6vw, 2.5rem);
+  margin-top: auto;
 }
 
 .quote figcaption strong {
-  font-size: 0.84rem;
+  font-size: 0.9rem;
 }
 
-.quote figcaption span,
-.quoteIndex {
-  color: #d9dfc8;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.56rem;
-  letter-spacing: 0.05em;
+.quote figcaption span {
+  color: rgb(251 250 245 / 0.68);
+  font-size: 0.72rem;
   line-height: 1.5;
-  text-transform: uppercase;
-}
-
-.quoteIndex {
-  position: absolute;
-  right: 1.5rem;
-  top: 2rem;
 }
 
 @media (max-width: 840px) {
-  .testimonials {
-    contain-intrinsic-block-size: auto 120rem;
-  }
-
   .trustList {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .trustItem:nth-child(3) {
     border-left: 0;
-    border-top: 1px solid rgb(16 44 39 / 0.13);
+    border-top: 1px solid rgb(24 59 43 / 0.14);
   }
 
   .trustItem:nth-child(4) {
-    border-top: 1px solid rgb(16 44 39 / 0.13);
+    border-top: 1px solid rgb(24 59 43 / 0.14);
   }
 
   .testimonialsIntro {
@@ -204,24 +173,17 @@
   }
 
   .quote {
-    min-height: 25rem;
-    padding-left: 0;
-  }
-
-  .quote + .quote {
-    border-left: 0;
-    padding-left: 0;
-  }
-
-  .quote + .quote figcaption {
-    left: 0;
+    min-height: 0;
   }
 }
 
-@media (max-width: 560px) {
-  .trustItem {
-    min-height: 8rem;
-    padding: 1.3rem 0.85rem;
+@media (max-width: 480px) {
+  .trustList {
+    grid-template-columns: 1fr;
   }
 
+  .trustItem + .trustItem {
+    border-left: 0;
+    border-top: 1px solid rgb(24 59 43 / 0.14);
+  }
 }

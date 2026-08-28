@@ -7,21 +7,20 @@ export function CareSection() {
     <section
       aria-labelledby="care-title"
       className={styles.care}
-      id="cuidados"
+      id="visitas"
     >
       <div className={styles.shell}>
         <header className={styles.intro}>
-          <p className={styles.eyebrow}>Lo que no cambia aunque cambie el plan</p>
+          <p className={styles.eyebrow}>
+            Una finca que escucha antes de proponer
+          </p>
           <h2 id="care-title">
-            Una experiencia bien cuidada <span>empieza mucho antes</span> de
-            llegar.
+            Cada grupo necesita su propia forma de vivir Orea.
           </h2>
         </header>
 
         <aside className={styles.scenario}>
-          <span aria-hidden="true" className={styles.scenarioIndex}>
-            Un plan hecho a medida
-          </span>
+          <p className={styles.scenarioKicker}>Un plan hecho a medida</p>
           <h3>Primero escuchamos. Después proponemos.</h3>
           <p>
             Una familia, un colegio y un campamento no necesitan lo mismo.
@@ -32,11 +31,8 @@ export function CareSection() {
         </aside>
 
         <ul className={styles.facts}>
-          {siteContent.care.map((fact, index) => (
+          {siteContent.care.map((fact) => (
             <li key={fact.id}>
-              <span aria-hidden="true" className={styles.factIndex}>
-                {String(index + 1).padStart(2, "0")}
-              </span>
               <h3>{fact.title}</h3>
               <p>{fact.description}</p>
             </li>

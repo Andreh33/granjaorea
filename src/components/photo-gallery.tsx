@@ -24,30 +24,28 @@ export function PhotoGallery() {
         </header>
 
         <div className={styles.gallery}>
-          {siteContent.gallery.map((image, index) => (
-            <figure className={styles.figure} data-index={index + 1} key={image.id}>
+          {siteContent.gallery.map((image) => (
+            <figure className={styles.figure} key={image.id}>
               <div className={styles.media}>
                 <Image
                   alt={image.alt}
                   className={styles.image}
                   fill
+                  loading="lazy"
                   quality={82}
                   sizes={image.sizes}
                   src={image.src}
                 />
               </div>
-              <figcaption>
-                <span aria-hidden="true">0{index + 1}</span>
-                {image.caption}
-              </figcaption>
+              <figcaption>{image.caption}</figcaption>
             </figure>
           ))}
         </div>
 
         <p className={styles.disclaimer}>
-          Imágenes editoriales de naturaleza y actividades utilizadas para
-          representar el tipo de experiencias. Consulta la propuesta concreta
-          de Orea para tu fecha y grupo.
+          Fotografías editoriales de Unsplash utilizadas para representar el
+          tipo de experiencia.{" "}
+          <a href="#creditos-fotograficos">Ver créditos fotográficos</a>
         </p>
       </div>
     </section>

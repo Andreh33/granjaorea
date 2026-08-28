@@ -8,9 +8,12 @@ import {
 import styles from "./page-sections.module.css";
 
 const trustFacts = [
-  { value: "1990", label: "creando experiencias" },
-  { value: "80+", label: "especies en la granja" },
-  { value: "Fines de semana", label: "visitas familiares con cita" },
+  {
+    value: "Desde 1990",
+    label: "acompañando experiencias en la naturaleza",
+  },
+  { value: "Equipo presente", label: "cuidado adaptado a cada grupo" },
+  { value: "Con cita previa", label: "visitas familiares" },
   { value: "Ciudad Real", label: "en el entorno de La Atalaya" },
 ] as const;
 
@@ -18,11 +21,8 @@ export function TrustStrip() {
   return (
     <section aria-label="Datos clave de Granja Escuela Orea" className={styles.trust}>
       <ul className={styles.trustList}>
-        {trustFacts.map((fact, index) => (
+        {trustFacts.map((fact) => (
           <li className={styles.trustItem} key={fact.label}>
-            <span aria-hidden="true" className={styles.trustIndex}>
-              0{index + 1}
-            </span>
             <strong>{fact.value}</strong>
             <span>{fact.label}</span>
           </li>
@@ -50,7 +50,7 @@ export function Testimonials() {
           </p>
         </header>
         <div className={styles.quotes}>
-          {siteContent.testimonials.map((testimonial, index) => (
+          {siteContent.testimonials.map((testimonial) => (
             <figure className={styles.quote} key={testimonial.id}>
               <span aria-hidden="true" className={styles.quoteMark}>
                 “
@@ -62,9 +62,6 @@ export function Testimonials() {
                   {testimonial.context}
                 </span>
               </figcaption>
-              <span aria-hidden="true" className={styles.quoteIndex}>
-                0{index + 1}
-              </span>
             </figure>
           ))}
         </div>
