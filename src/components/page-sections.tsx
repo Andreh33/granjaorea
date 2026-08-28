@@ -70,6 +70,47 @@ export function SeasonPanel() {
   );
 }
 
+export function Testimonials() {
+  return (
+    <section
+      aria-labelledby="testimonials-title"
+      className={styles.testimonials}
+    >
+      <div className={styles.testimonialsShell}>
+        <header className={styles.testimonialsIntro}>
+          <p className={styles.eyebrow}>Lo cuentan sus familias</p>
+          <h2 id="testimonials-title">
+            La tranquilidad también vuelve a casa.
+          </h2>
+          <p>
+            Testimonios compartidos directamente con Orea; no proceden de una
+            plataforma externa de reseñas.
+          </p>
+        </header>
+        <div className={styles.quotes}>
+          {siteContent.testimonials.map((testimonial, index) => (
+            <figure className={styles.quote} key={testimonial.id}>
+              <span aria-hidden="true" className={styles.quoteMark}>
+                “
+              </span>
+              <blockquote>{testimonial.quote}</blockquote>
+              <figcaption>
+                <strong>{testimonial.name}</strong>
+                <span data-testid="testimonial-context">
+                  {testimonial.context}
+                </span>
+              </figcaption>
+              <span aria-hidden="true" className={styles.quoteIndex}>
+                0{index + 1}
+              </span>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function StructuredData() {
   const schemas = [
     buildOrganizationJsonLd(),

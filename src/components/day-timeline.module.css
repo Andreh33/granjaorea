@@ -265,6 +265,8 @@
 
 .item {
   border-top: 1px solid rgb(16 44 39 / 0.18);
+  contain-intrinsic-size: auto 13rem;
+  content-visibility: auto;
   display: grid;
   gap: clamp(1.5rem, 3vw, 3rem);
   grid-template-columns: 6.5rem 1fr;

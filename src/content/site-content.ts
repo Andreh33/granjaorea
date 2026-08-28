@@ -259,7 +259,7 @@ export const siteContent = {
       description:
         "Una relación directa con los animales para entender sus cuidados, sus ritmos y el respeto por lo vivo.",
       image: "/images/orea/activity-farm.jpg",
-      imageAlt: "Participantes de Orea Camp con animales de la granja escuela",
+      imageAlt: "Pavos reales en la zona de animales de Granja Escuela Orea",
       focalPoint: "50% 45%",
     },
     {
@@ -269,7 +269,7 @@ export const siteContent = {
       description:
         "Parque aéreo, escalada y tirolina dentro de las instalaciones, adaptados a la edad y al grupo.",
       image: "/images/orea/activity-adventure.jpg",
-      imageAlt: "Actividad de multiaventura en las instalaciones de Orea Camp",
+      imageAlt: "Participante cruzando el parque aéreo de Orea",
       focalPoint: "50% 40%",
     },
     {
@@ -279,7 +279,7 @@ export const siteContent = {
       description:
         "Primer contacto, clases y rutas estructuradas según la experiencia de cada participante.",
       image: "/images/orea/activity-horses.jpg",
-      imageAlt: "Actividad de hípica adaptada para menores en Orea Camp",
+      imageAlt: "Grupo de participantes en una sesión de hípica en Orea",
       focalPoint: "50% 50%",
     },
     {
@@ -289,7 +289,7 @@ export const siteContent = {
       description:
         "Momentos refrescantes que combinan juego, convivencia y supervisión del equipo.",
       image: "/images/orea/activity-pool.jpg",
-      imageAlt: "Grupo de campamento participando en juegos de piscina",
+      imageAlt: "Grupo durante una actividad junto a la piscina de Orea",
       focalPoint: "50% 50%",
     },
     {
@@ -299,7 +299,7 @@ export const siteContent = {
       description:
         "Dinámicas prácticas integradas en la jornada para perder el miedo a comunicarse.",
       image: "/images/orea/activity-english.jpg",
-      imageAlt: "Dinámica de inglés en grupo al aire libre en Orea Camp",
+      imageAlt: "Grupo de jóvenes sentado en círculo durante una dinámica en Orea",
       focalPoint: "50% 50%",
     },
     {
@@ -309,7 +309,7 @@ export const siteContent = {
       description:
         "Propuestas creativas para imaginar, construir y descubrir talentos fuera de la rutina.",
       image: "/images/orea/activity-workshop.jpg",
-      imageAlt: "Participantes realizando un taller creativo en el campamento",
+      imageAlt: "Participantes durante una actividad colectiva al aire libre en Orea",
       focalPoint: "50% 50%",
     },
     {
@@ -319,7 +319,7 @@ export const siteContent = {
       description:
         "Retos colectivos en los que importa participar, probar y aprender a contar con los demás.",
       image: "/images/orea/activity-sports.jpg",
-      imageAlt: "Actividad deportiva de equipo en el entorno natural de Orea Camp",
+      imageAlt: "Participantes jugando al tenis en las pistas deportivas de Orea",
       focalPoint: "50% 50%",
     },
     {
@@ -329,7 +329,7 @@ export const siteContent = {
       description:
         "Juegos nocturnos, historias y momentos compartidos que terminan convirtiéndose en recuerdos.",
       image: "/images/orea/activity-evening.jpg",
-      imageAlt: "Velada nocturna compartida por participantes de Orea Camp",
+      imageAlt: "Grupo participando en una actividad festiva de interior en Orea",
       focalPoint: "50% 50%",
     },
   ],
